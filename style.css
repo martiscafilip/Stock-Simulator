@@ -1,0 +1,39 @@
+header {
+    line-height: 5em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 6em;
+    width: 100%;
+}
+
+.ilutstration {
+    height: 30em;
+    width: 90em;
+}
+
+.logo {
+    height: 5em;
+    width: 10em;
+}
+
+.joinwresume,
+.joinnow,
+.separator {
+    height: 5em;
+    width: 10em;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: grey;
+}
+
+.signin {
+    border: 5px solid rgba(58, 137, 228, 0.76);
+    height: 5em;
+    width: 10em;
+    border-radius: 5em;
+    font-size: 1.5em;
+    font-weight: 1000;
+    color: rgba(58, 137, 228, 0.76);
+    text-decoration: none;
+}
