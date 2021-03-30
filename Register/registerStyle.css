@@ -1,0 +1,154 @@
+html, body { height: 100%; width: 100%; margin: 0; }
+
+body {
+    background-color: #012733;
+    display: flex;
+    flex-direction:column ;
+    
+  }
+  
+  form{
+    background-color: rgb(255, 255, 255);
+    width: 35%;
+    height: 55%;
+    padding:2em 2em ;
+    align-self: center;
+    display: flex;
+    flex-direction:column ; 
+    justify-content: space-evenly;
+    border-radius: 10px;
+    
+  }
+  
+  header{
+    /* text-align: center; */
+    color: rgb(0, 115, 192);
+    align-self: center;
+    
+    
+}
+
+.register-input{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    align-self: center;
+    border-radius: 10px;
+}
+
+label{
+  width: 70%;
+  align-self: center;
+  display: flex;
+  flex-direction:column ;
+     
+}
+
+button{
+  background-color: #012733;
+  color: aliceblue;
+  margin: 5%;
+}
+
+
+/*-------------------------------------------------------------------------*/
+
+
+@media screen and (max-width : 1024px){
+  form{
+      background-color: rgb(255, 255, 255);
+      width: 60%;
+      height: 60%;
+      align-self: center;
+      display: flex;
+      flex-direction:column ; 
+      justify-content:start;
+      border-radius: 10px;
+      
+    }
+    
+    header{
+      /* text-align: center; */
+      color: rgb(0, 115, 192);
+      align-self: center;
+  }
+
+  img{
+    width: 40vw;
+  }
+  
+  .register-input{
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      align-self: center;
+      border-radius: 10px;
+  }
+  
+  label{
+    width: 100%;
+    height: 20%;
+    align-self: center;
+    display: flex;
+    flex-direction:column ;
+       
+  }
+  
+  button{
+    background-color: #012733;
+    color: aliceblue;
+    align-self: center;
+    width: 100%;
+  }
+ 
+}
+
+
+/*--------------------------------------------------------------------------*/
+
+@media screen and (max-width : 450px){
+  form{
+      background-color: rgb(255, 255, 255);
+      width: 50%;
+      height: 60%;
+      align-self: center;
+      display: flex;
+      flex-direction:column ; 
+      justify-content:start;
+      border-radius: 10px;
+      
+    }
+    
+    header{
+      /* text-align: center; */
+      color: rgb(0, 115, 192);
+      align-self: center;
+  }
+
+  img{
+    width: 40vw;
+  }
+  
+  .register-input{
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      align-self: center;
+      border-radius: 10px;
+  }
+  
+  label{
+    width: 100%;
+    height: 20%;
+    align-self: center;
+    display: flex;
+    flex-direction:column ;
+       
+  }
+  
+  button{
+    background-color: #012733;
+    color: aliceblue;
+    align-self: center;
+    width: 100%;
+  }
+ 
+}
+
