@@ -10,7 +10,7 @@
 <body>
 <div class="wrapper">
     <div class="registration_logo">
-        <img src="/public/logo.png" alt="Site Logo l" width=190px >
+        <img src="/public/logo.png" alt="Site Logo l" width="190" >
     </div>
 	<div class="registration_form">
 		<div class="title">
