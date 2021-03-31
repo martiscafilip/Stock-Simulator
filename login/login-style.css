@@ -8,24 +8,32 @@ body {
      display: flex;
      flex-direction: column;
      align-items: center;
-     justify-content:center;
+     justify-content: space-around;
+}
+
+.logo{
+    width: 150px;
 }
 
 .slogan {
-    /* font-family:monospace; */
     font-family: sans-serif;
     font-weight: 700;
     font-size: large;
     color: #2ac60b;
 }
 
-.form-log-info, .form-buttons {
+.form-log-info{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    width: 10px;
+    align-items:center;
+    height: 150px;
 }
 
-/* form > div:nth-of-type(2) { */
 .form-buttons {
+    display: flex;
+    flex-direction: column;
     width: 10em;
     height: 3em;
     justify-content: space-between;
@@ -39,15 +47,13 @@ body {
 
 form {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     background-color: white;
-    /* width: 15em; */
     width: 20vw;
-    /* height: 15em; */
     height: 42vh;
     border: 1px solid black;
     
@@ -68,26 +74,30 @@ input {
         height: 90vh;
         flex-direction: column;
         justify-content: space-evenly;
-        /* background-color: #727475; */
     }
     .form-log-info{
         font-size: 20px;
     }
     .form-buttons{
         height: 20vh;
-        width: 30 vw;
+        width: 30vw;
+        align-items: center;
         justify-content: space-evenly;
     }
     button {
         height: 5vh;
         width: 20vw;
-        /* background-color: #9b9c9d; */
-        /* color: #a40000; */
     }
     input{
         width: 30vw; 
         height: 5vh;  
-        /* background-color: #9b9c9d; */
-        /* color: #1a8f03; */
     }
-  }
+    .logo {
+        width: 100px;
+    }
+    .chenar{
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+}
+
