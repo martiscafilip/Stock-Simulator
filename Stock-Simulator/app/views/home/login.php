@@ -31,7 +31,7 @@
                 </label>
             </div>
             <div class="form-buttons">
-                <button  type="submit">Log In</button>
+                <button  type="button" onClick="document.location.href='/public/trade/trade'">Log In</button>
                 <button type="button" onClick="document.location.href='/public/register/register'"> Register</button>
             </div>
         </form>
