@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leader Board</title>
     <link rel="stylesheet" href="/public/account.css">
+    <link rel="stylesheet" href="/public/buttons.css">
 </head>
 <body>
     
     <header>
         
-        <button class="menu-button">
-            
+        <button class="menu-button">  
             <div class="menu-button-lines">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-            
         </button>
         
         <p class="slogan">
@@ -27,9 +26,10 @@
         <img class="logo" src="/public/logo.png" alt="logo image">
         
         <nav class="menu-nav">
-            <a href=""> Profil </a>
-            <a href=""> Trade</a>
+            <a href=""> Leaderboard </a>
+            <a href="/public/trade/trade"> Trade</a>
             <a href=""> Change Profile</a>
+            <a href="/public/home/login"> Log Out</a>
         </nav>
     </header>
     

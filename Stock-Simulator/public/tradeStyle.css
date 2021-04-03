@@ -1,67 +1,130 @@
 body {
     margin: 0;
-    background-color: #012733;
+    background-color: #d0d9db;
 }
 
 .header {
     height: 5vh;
     /* border-style: dashed; */
     border: solid;
-    border-color: white;
+    border-color: rgb(37, 107, 101);
+    background-color: rgb(37, 107, 101);
+}
+
+.Stocks {
+    background-color: rgb(216, 219, 221);
+    display: flex;
+    height: 8vh;
+    border: solid;
+    border-color: grey;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 0;
+    border-right-width: 0;
+    justify-content: space-between;
 }
 
 .listStocks {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.searchStocks {
+    width: 8vw;
+    display: flex;
+    justify-content: center;
+}
+
+.line {
+    border-right: 2px solid white;
     height: 8vh;
-    border: solid;
-    border-color: white;
+    width: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sellbuy {
     display: flex;
-    height: 12vh;
+    height: 14vh;
     justify-content: space-around;
+    align-items: center;
+    background-color: rgb(169, 174, 177);
+    text-align: center;
+    z-index: 2;
 }
 
 .flex {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 99vh;
+    height: 100vh;
+}
+
+.btn {
+    height: 12vh;
+    width: 40vw;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.8s;
+    z-index: 3;
 }
 
 .buybutton {
-    height: 100%;
-    width: 40vw;
+    color: black;
+    background-color: rgb(103, 221, 103);
 }
 
 .sellbutton {
-    height: 100%;
-    width: 40vw;
+    color: black;
+    background-color: rgb(231, 131, 131);
 }
 
+.btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 0;
+    width: 40vw;
+    z-index: -1;
+    transition: 0.5s;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+
+.buybutton:hover,
 .sellbutton:hover {
-    height: 100%;
-    width: 40vw;
-    background-color: red;
+    color: white;
 }
 
-.buybutton:hover {
-    height: 100%;
-    width: 40vw;
+.buybutton::before {
     background-color: green;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+
+.sellbutton::before {
+    background-color: red;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+}
+
+.buybutton:hover::before,
+.sellbutton:hover::before {
+    height: 180%;
 }
 
 .dot {
     height: 8vh;
+    line-height: 8vh;
     width: 8vh;
-    background-color: #bbb;
+    background-color: #012733;
     border-radius: 50%;
-    display: inline-block;
-}
-
-.listStocks {
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
+    color: white;
 }
 
 .header button {
