@@ -5,19 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/registerStyle.css">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <body>
 <div class="wrapper">
     <div class="registration_logo">
-        <img src="/public/logo.png" alt="Site Logo l" width="190" >
+        <img src="/public/logo.png" alt="Site Logo l" width="150" >
     </div>
 	<div class="registration_form">
+		<form>
 		<div class="title">
 			Registration Form
 		</div>
-
-		<form>
 			<div class="form_wrap">
 					<div class="input_wrap">
 						<label for="fname">Full Name</label>
