@@ -34,20 +34,47 @@
         $userString = file_get_contents("./leaderBoard.json");
         $userArray = json_decode($userString);
         $rankPosition = 0;
-        foreach($userArray as $user){
-            echo "<div>";
-                $rankPosition++;
-                echo "<div class='rank_avatar'> ";
-                    echo $rankPosition . "."; 
-                    echo "<img class='avatar_photo' src='" . $user->profilPath . "' alt='avatar photo'>";
-                echo "</div>";
-                echo "<div class='user_info'> ";
-                    echo "<p>" . $user->firstName . " " . $user->secondName . "</p>";
-                    echo "<p>" . $user->country . "</p>";
-                    echo "<p>" . $user->profit . "</p>";
-                echo "</div>";
+        echo "<div>";
+            echo "<div class='ranking_pool'>";
+                foreach($userArray as $user){
+                    echo "<div class='ranking'>";
+                        $rankPosition++;
+
+                        if($rankPosition == 1)
+                            echo "<div class='rank_avatar red_color'> ";
+                        else if($rankPosition == 2)
+                            echo "<div class='rank_avatar orange_color'> ";
+                        else if($rankPosition == 3)
+                            echo "<div class='rank_avatar yellow_color'> ";
+                        else
+                            echo "<div class='rank_avatar'> ";
+                            
+
+                                echo $rankPosition; 
+                                echo "<img class='avatar_photo' src='" . $user->profilPath . "' alt='avatar photo'>";
+
+                            echo "</div>";
+
+
+                        echo "<div class='user_info'> ";
+                                echo "<p class='name'>" . $user->firstName . " " . $user->secondName . "</p>";
+                                echo "<p>" . $user->country . "</p>";
+
+                            if($user->profit[0] == '+')
+                                echo "<p class='green_color'>";
+                            else if($user->profit[0] == '-')
+                                echo "<p class='red_color'>" ;
+
+                                echo $user->profit . "</p>";
+
+                        echo "</div>";
+                    echo "</div>";
+                }
             echo "</div>";
-        }
+            echo "<div class='fixed'>";
+                echo "Global Leaderboard";
+            echo "</div>";
+        echo "</div>";
     ?>
 
 

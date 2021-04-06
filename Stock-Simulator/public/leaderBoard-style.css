@@ -4,7 +4,7 @@ body{
 }
 
 header {
-    /* border: 1px solid white; */
+
     height: 10vh;
     display: flex;
     padding: 0.5em 2em;
@@ -27,17 +27,6 @@ header {
     color: #2ac60b;
 }
 
-/* .menu-button-lines{
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.menu-button-lines > div {
-    width: 30px;
-    border: 2px solid black;
-} */
 
 .menu-button {
     width: 55px;
@@ -70,13 +59,41 @@ header {
     transform: translateX(-10%);
 }
 
+
+
 body > div {
+    /* border: 2px solid white; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 20vh;
-    margin: 10px;
+    flex-direction: row;
+    /* height: 20vh; */
+    /* margin: 10px; */
+    /* border: 2px solid green; */
+    /* background-color: greenyellow; */
     
+}
+
+.ranking_pool{
+    margin-right: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.fixed{
+    /* background-color: greenyellow; */
+    /* border: 2px solid white; */
+    font-family: monospace;
+    height: auto;
+    position: fixed;    
+    top: 50vh;
+    left: 50vw;
+    color: #2a5c4d;
+    font-size: 50px;
+}
+
+.ranking{
+    display: flex;
 }
 
 .avatar_photo{
@@ -84,15 +101,41 @@ body > div {
     height: 100px;
     border: 2px solid black;
     border-radius: 50%;
+    margin: 20px;
 }
 
 .user_info{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-evenly; */
+    margin-top: 15px;
+}
+
+.name{
+    color: whitesmoke;
+    font-family: sans-serif;
+    font-size: large;    
 }
 
 .rank_avatar{
+    font-size: 5em;
+    /* background-color: #2ac60b; */
     display: flex;
     align-items: center;
+}
+
+.red_color{
+    color: red;
+}
+
+.orange_color{
+    color: orangered;
+}
+
+.yellow_color{
+    color:yellow;
+}
+
+.green_color{
+    color:green;
 }
