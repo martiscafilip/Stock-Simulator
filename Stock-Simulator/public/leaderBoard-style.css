@@ -139,3 +139,109 @@ body > div {
 .green_color{
     color:green;
 }
+
+@media screen and (max-width: 1025px){
+    .menu-button {
+        width: 10vw;
+    }
+
+    .slogan{
+        width: 40vw;
+        font-size: 3vw;
+    }
+
+    .logo {
+        width: 10vw;
+    }
+
+    .menu-nav{
+        transform: translateX(-150%);
+    
+    }
+    .is--open{
+        transform: translateX(-15%);
+    }
+    
+    .ranking_pool{
+        margin-top: 610px;
+        margin-right: 0px;
+        transform: scale(2);
+    }
+    .fixed{
+        /* top: 15vh; */
+        /* left:10vw; */
+        font-size:200%;
+        position: inherit;
+        transform: scale(2);
+        padding-top: 20px;
+    }
+    body > div{
+        flex-direction: column-reverse;
+    }
+    .menu-nav > a{
+        margin-left: 0px;
+        font-size: 4vw;
+    }
+    header {
+        padding-left: 10px;
+        padding-right: 10px;
+        z-index: 1;
+    }
+    .slogan{
+        padding-left: 10px;
+    }
+    
+}
+
+@media screen and (max-width: 750px){
+    
+    .menu-button {
+        width: 15vw;
+    }
+
+    .slogan{
+        width: 45vw;
+        font-size: 4vw;
+    }
+
+    .logo {
+        width: 15vw;
+    }
+    
+    .menu-nav{
+        transform: translateX(-150%);
+    
+    }
+
+    .is--open{
+        transform: translateX(-15%);
+    }
+    
+    .ranking_pool{
+        margin-top: 0px;
+        margin-right: 0px;
+        transform: scale(1);
+    }
+    .fixed{
+        /* top: 15vh; */
+        /* left:10vw; */
+        font-size:200%;
+        position: inherit;
+        transform: scale(1);
+    }
+    body > div{
+        flex-direction: column-reverse;
+    }
+    .menu-nav > a{
+        margin-left: 0px;
+    }
+    header {
+        padding-left: 10px;
+        padding-right: 10px;
+        z-index: 1;
+    }
+    .slogan{
+        padding-left: 10px;
+    }
+    
+}
