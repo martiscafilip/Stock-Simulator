@@ -74,9 +74,9 @@ body > div {
     
 }
 
-.ranking_pool{
+.profile_pool{
     margin-right: 50vw;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
 }
 
@@ -92,7 +92,7 @@ body > div {
     font-size: 50px;
 }
 
-.ranking{
+.profile{
     display: flex;
 }
 
@@ -104,7 +104,11 @@ body > div {
     margin: 20px;
 }
 
-.user_info{
+.avatar_photo:hover{
+    border: 2px solid whitesmoke;
+}
+
+.profile_info{
     /* display: flex;
     flex-direction: column;
     justify-content: space-evenly; */
@@ -117,7 +121,7 @@ body > div {
     font-size: large;    
 }
 
-.rank_avatar{
+.profile_avatar{
     font-size: 5em;
     /* background-color: #2ac60b; */
     display: flex;
@@ -141,6 +145,7 @@ body > div {
 }
 
 @media screen and (max-width: 1025px){
+
     .menu-button {
         width: 10vw;
     }
@@ -162,11 +167,7 @@ body > div {
         transform: translateX(-15%);
     }
     
-    .ranking_pool{
-        /* margin-top: 610px;
-        margin-right: 0px;
-        transform: scale(2); */
-
+    .profile_pool{
         margin-right: 0px;
         font-size: 2.5vh;
     }
@@ -175,7 +176,7 @@ body > div {
         font-size: 3vh;
     }
 
-    .rank_avatar > img{
+    .profile_avatar > input{
         height: 15vh;
         width: 15vh;
 
@@ -231,21 +232,11 @@ body > div {
         transform: translateX(-15%);
     }
     
-    .ranking_pool{
+    .profile_pool{
         margin-top: 0px;
         margin-right: 0px;
         transform: scale(1);
     }
-
-    .ranking{
-        font-size: 2vh;
-    }
-
-    .user_info{
-        font-size: 3vh;
-        color: gray;
-    }
-
     .fixed{
         /* top: 15vh; */
         /* left:10vw; */
