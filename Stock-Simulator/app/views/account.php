@@ -20,9 +20,9 @@
         <img class="logo" src="/public/profil-pictures/logo.png" alt="logo image">
         
         <nav class="menu-nav">
-            <a href=""> Leader Board </a>
+            <a href="/public/leaderBoard/leaderBoard"> Leader Board </a>
             <a href="/public/trade/trade"> Trade</a>
-            <a href=""> Change Profile</a>
+            <a href="/public/changeProfile/changeProfile"> Change Profile</a>
             <a href="/public/home/login"> Log Out</a>
 
         </nav>

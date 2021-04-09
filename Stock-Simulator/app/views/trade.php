@@ -15,18 +15,12 @@
     <div class="flex">
         <div>
             <header class="header">
-                <button class="menu-button">
-                    <div class="menu-button-lines">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </button>
+                <input class="menu-button" type="image" src="/public/Layer3.png" alt="menu button">
 
                 <nav class="menu-nav">
                     <a href="/public/account/account"> Account </a>
-                    <a href=""> Leaderboard</a>
-                    <a href=""> Change Profile</a>
+                    <a href="/public/leaderBoard/leaderBoard"> Leaderboard</a>
+                    <a href="/public/changeProfile/changeProfile"> Change Profile</a>
                     <a href="/public/home/login"> Log Out</a>
                 </nav>
             </header>
@@ -34,7 +28,7 @@
             <div class="Stocks">
                 <div class="searchStocks">
 
-                    <div class="dot">SEARCH</div>
+                <img  class="searchbutton" src="/public/button.png">
                      
                 </div>
 
@@ -51,10 +45,29 @@
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
                 </div>
             </div>
         </div>
 
+        <div class="tradesection">
+        <img class= "tesla" src="/public/tesla.png" alt="Tesla to the moon">
+        </div>
 
         <div class="sellbuy">
             <button class="btn buybutton">BUY</button>
