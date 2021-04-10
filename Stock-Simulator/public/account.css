@@ -21,8 +21,8 @@ header {
     background-color: #00202a;
 }
 
-.logo {
-    width: 50px;
+.logo{
+  width:80px
 }
 
 .slogan {
@@ -47,7 +47,7 @@ header {
 }
 
 .menu-nav > a {
-    font-size: large;
+    font-size: 3vh;
     color:whitesmoke;
     margin: 4vh;
 }
@@ -56,7 +56,6 @@ header {
 .is--open {
     transform: translateX(-10%);
 }
-
 
 .wrapper{
     min-height: 85vh;
@@ -101,6 +100,7 @@ header {
 
 }
 
+
 .user_avatar{
      height: 12vh;    
 }
@@ -121,6 +121,73 @@ header {
     flex-direction: column;
     margin-left: 1em;
 }
+
+.box-stats-special{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content:space-between;
+}
+
+.change-coin{
+  height: 100%;
+  width: 20%;
+  font-size: 1.5vh;
+  right: 50px;
+  font-size: 25px;
+  color: white;
+  border-radius: 10px;
+  border-color: rgb(223, 189, 189);
+  border-top-left-radius: 30%;
+  border-bottom-left-radius: 30%;
+  background-color: rgb(223, 189, 189) ;
+  cursor: pointer;
+  outline: none;
+  
+  
+}
+
+
+.change-coin span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.change-coin:hover{
+  color: #00536d;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.change-coin span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.change-coin:hover span {
+  padding-right: 25px;
+}
+
+.change-coin:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.stats-value-special{
+  font-size: 4vh;
+  margin-top: 2vh;
+  margin-left: 0.5em;
+}
+
+.stats-value-custom{
+  font-size: 4vh;
+  color: #00536d ;
+  margin-top: 2vh;
+}
+
  .stats-title{
     font-size: 3vh;
     color: #012733;
@@ -133,6 +200,7 @@ header {
     margin-top: 2vh;
     margin-left: 1em;
 }
+
 
 @keyframes open_btn_animation {
     50%{width: 15vw; margin-right: 2.5vw; }
@@ -207,6 +275,7 @@ header {
       font-size: 25px;
   }
 
+
 @media screen and (max-width: 1300px) {
     .wrapper-info{
         height:67vh;
@@ -240,7 +309,7 @@ header {
     }
     
     @keyframes open_btn_animation {
-        50%{width: 20vw; margin-right: 5vw; }
+        50%{width: 25vw; margin-right: 2.5vw; }
         100%{width: 30vw;  }
         
     }
@@ -269,8 +338,8 @@ header {
       }
       
       .form-user {
-        max-width: 30vw;
-        max-height: 80vh;
+        max-width: 40vw;
+        max-height: 90vh;
         padding: 10px;
         background-color: #012733;
       }
@@ -311,12 +380,20 @@ header {
           font-size: 25px;
       }
     
-
+      .menu-nav > a {
+        font-size: 3vh;
+        color:whitesmoke;
+        margin: 4vh;
+    }
+  .logo{
+    width:80px
+  }
+  
 }
 
 
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 420px) {
     .wrapper-info{
         height:67vh;
         display: flex;
@@ -436,6 +513,40 @@ header {
       font-size: 25px;
   }
 
+  .menu-button{
+    width:50px
+  }
+
+  
+.menu-nav > a {
+  font-size: 3vh;
+  color:whitesmoke;
+  margin: 2vh;
+}
+
+.change-coin span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.change-coin:hover{
+  color: #00536d;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.change-coin span:after {
+  display: none;
+}
+
+.change-coin:hover span {
+  padding-right: 0px;
+}
+
+.change-coin:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 }
     
 
@@ -461,5 +572,14 @@ header {
         display: none;
       }
       
+      .menu-button{
+        width:50px
+      }
+      
+      .menu-nav > a {
+        font-size: 4vh;
+        color:whitesmoke;
+        margin: 2vh;
+      }
       
 }
