@@ -21,7 +21,7 @@
     top: 14vh;
     background-color: rgb(37, 107, 101);
     height: 73vh;
-    width: 20vw;
+    width: 15vw;
     display: flex;
     flex-direction: column;
     padding: 2em;
@@ -32,11 +32,27 @@
 }
 
 .menu-nav>a {
-    font-size: large;
+    font-size: 100%;
     color: whitesmoke;
+    width: 15vw;
     margin: 4vh;
 }
 
 .is--open {
     transform: translateX(-10%);
+}
+
+@media screen and (max-width: 801px) {
+    .menu-nav>a {
+        margin-left: 0;
+        width: 15vw;
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 401px) {
+    .menu-nav>a {
+        margin-left: 0;
+        font-size: 4vw
+    }
 }
