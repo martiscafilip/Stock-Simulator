@@ -12,7 +12,7 @@
     
     <header>
         
-    <input type="image" class="menu-button" src="/public/profil-pictures/menu-icon.png" alt="Menu button" width="50">
+    <input type="image" class="menu-button" src="/public/profil-pictures/menu-icon.png" alt="Menu button" width="60">
         
         <p class="slogan">
             HODL FOR YOUR LIFE
@@ -38,9 +38,12 @@
             <div class="info-left">
                 <div class="info-box">
                     <img class="user_info_icons" src="/public/profil-pictures/briefcase-icon-windows-60.png" alt="Utilizator-portofoliu imagine">
-                    <div class="box-stats">
-                        <p class="stats-title">Portofolio value</p>
-                        <p class="stats-value">1,000.00</p>
+                    <div class="box-stats-special">
+                        <div class="stats-value-special">
+                        <p class="stats-title">Portof. value</p>
+                        <p class="stats-value-custom">1,000.00</p>
+                        </div>
+                        <button class="change-coin" ><span class="coin">€</span> </button>
                     </div>
                 </div>
                 <div class="info-box">

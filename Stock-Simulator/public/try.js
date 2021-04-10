@@ -1,12 +1,17 @@
 
 let menuBtn = document.getElementsByClassName("menu-button")[0];
 let navSlide = document.getElementsByClassName("menu-nav")[0];
+let coinBtn = document.getElementsByClassName("change-coin")[0];
 let counterPressButton = 0;
+let counterCoinBtn = 1;
+
 
 console.log(navSlide);
 console.log(menuBtn);
+console.log(coinBtn);
 
 menuBtn.addEventListener('click', onClick);
+coinBtn.addEventListener('click',onclickCoin);
 
 function onClick(){
     
@@ -20,6 +25,21 @@ function onClick(){
     navSlide.classList.add('is--open');
     counterPressButton += 1;
     console.log(counterPressButton);
+
+}
+
+function onclickCoin(){
+    
+    if(counterCoinBtn >= 1){
+        counterCoinBtn = 0;
+        console.log(counterCoinBtn);
+
+        document.getElementsByClassName("coin")[0].innerHTML="$";
+        return;
+    }
+    document.getElementsByClassName("coin")[0].innerHTML="€";
+    counterCoinBtn += 1;
+    console.log(counterCoinBtn);
 
 }
 
