@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock-Simulator</title>
 </head>
-<h1>Stock-Simulator</h1>
 <div>
+<h1>Stock-Simulator</h1>
+<div width="100">
     <section typeof="sa:AuthorsList">
         <h2>Authors</h2>
         <ul>
@@ -139,17 +140,44 @@
 
         <li>
             <h4>2.5 Design and Implementation Constraints</h4>
-            <p>...</p>
+            <p>- Design flexibly. We accounted for the fact that spectators will stretch and distort our designs.</p>
+            <p>- We Create a unique page design and content for full-sized and mobile sites.</p>
         </li>
 
         <li>
             <h4>2.6 User Documentation</h4>
-            <p>...</p>
+            <h5>1) Login/Register<h5>
+            <p>If you want to use an existing account, just log in .</p>
+            <img src="../public/profil-pictures/form_login.png" class="ss" width="1000" >
+            <hr>
+            <p>oterwise, register</p>
+            <img src="../public/profil-pictures/form_register.png" class="ss" width="1000" >
+            <hr>
+            <h5>2) Enjoy the application<h5>
+            <p>After log in, you will reach the trade page where all the action begins. </p>
+            <img src="../public/profil-pictures/trade_page.png" class="ss" width="1000" >
+            <hr>
+            <p>You can view your profile and statistics about your performance using the tread page menu.</p>
+            <img src="../public/profil-pictures/trade_page_menu.png" class="ss" width="1000" >
+            <hr>
+            <p>and here is your Profile Page</p>
+            <img src="../public/profil-pictures/profile_page.png" class="ss" width="1000" >
+            <hr>
+            <p>In addition, you can access the global ranking page and find out your position and that of other users, using the same menu.</p>
+            <img src="../public/profil-pictures/leader_page.png" class="ss" width="1000" >
+            <hr>
+            <p>... or to change your account (if you have more than one)</p>
+            <img src="../public/profil-pictures/change_prof_page.png" class="ss" width="1000" >
+            <hr>
+            
         </li>
 
         <li>
             <h4>2.7 Assumptions and Dependencies</h4>
-            <p>...</p>
+            <p>- This web application uses cookies to improve user experience</p>
+            <p>- This web application uses real-time information about the exchange rate of currencies used in transactions.</p>
+            <p>- Users need to create an account and be logged in order to use the web application.</p>
+
         </li>
     </ul>
 </section>
@@ -159,22 +187,57 @@
     <ul>
         <li>
             <h4>3.1 User Interfaces</h4>
-            <p>...</p>
+            <h4>Next, I included sample screen images in order to describe the logical characteristics of each interface between the software product and the users.</h4>
+            <p>On the profile page you can report a problem at any time using the feedback button that will open a small chat. <p>
+            <p>You will also be able to choose one of the two types of currencies available for transactions using the button that has the current currency sign on it.</p>
+            <img src="../public/profil-pictures/profile_feedback_LI.jpg" class="ss" width="1000" >
+            <hr>
+            <p>On the trading page you will make transactions using the sell and buy buttons.You can choose the best bussines to invest in from the top bar or you can search for others using the search button</p>
+            <img src="../public/profil-pictures/trade_page_LI.jpg" class="ss" width="1000" >
+            <hr>
+            <p>On the Change account page, you can simply sign in with another account by clicking on the avatar of the account you want.</p>
+            <img src="../public/profil-pictures/change_prof_page_LI.jpg" class="ss" width="1000" >
+
+           
+
+
         </li>
 
         <li>
             <h4>3.2 Hardware Interfaces</h4>
-            <p>...</p>
+            <p>It is a responsive web application, therefore it supports several types of devices: </p>
+             <ul>
+                 <li>Desktop devices</li>
+                 <li>Laptops</li>
+                 <li>Mobile devices</li>
+                 <li>Tablet devices</li>
+             </ul>
+             <p>-Regardless of the resolution of the display.</p>
+             <p>-The server-client communication will be done using an open-source web server, Apache HTTP Server .</p>
         </li>
 
         <li>
             <h4>3.3 Software Interfaces</h4>
-            <p>...</p>
+            <p>-The web application communicates with an API in order to retrieve stock price data , and with the database in order to get the user's registration data and the data that capture his evolution in trading.</p>
+            <p>-The communication between the database and the website consists of operation concerning both reading and modifying the data.</p>
+            <p>-We also use an RSS feed to generate a ranking of the most successful users.</p>
         </li>
 
         <li>
             <h4>3.4 Communications Interfaces</h4>
-            <p>...</p>
+            <p>The web application uses HTTP: Hyper Text Transfer Protocol  for communication between web browser and web server</p>
+            <h5>Advantages</h5>
+            <ul>
+                <li>Memory usage and CPU usage are low because of lesser concurrent connections.</li>
+                <li>Errors can be reported without closing connections.</li>
+                <li>Owing to lesser TCP connections, network congestion is reduced.</li>
+            </ul>
+            <h5>Disadvantages</h5>
+            <ul>
+                <li>HTTP lacks encryption capabilities, making it less secure.</li>
+            </ul>
+            <p>-You can contact us using the email addresses and teleon numbers presented at the beginning of the html document.
+            </p>
         </li>
     </ul>
 </section>
@@ -233,5 +296,6 @@
         </li>
     </ul>
 </section>
+</div>
 
 </html>
