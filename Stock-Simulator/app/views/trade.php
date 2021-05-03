@@ -66,7 +66,7 @@
         </div>
 
         <div class="tradesection">
-        <img class= "tesla" src="/public/tesla.png" alt="Tesla to the moon">
+        <!-- <img class= "tesla" src="/public/tesla.png" alt="Tesla to the moon"> -->
         </div>
 
         <div class="sellbuy">
@@ -76,6 +76,8 @@
 
     </div>
     <script src="/public/try.js"></script>
-</body>
 
+
+
+</body>
 </html>
