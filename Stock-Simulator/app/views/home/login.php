@@ -10,34 +10,64 @@
 </head>
 
 <body>
+
+
+
     <div class="chenar">
         <img class="logo" src="/public/logo.png" alt="logo image">
         <p class="slogan">
             HODL FOR YOUR LIFE
         </p>
-        <form action="login.php">
+        <form action="../../app/controllers/loginvalidate.php" method="POST">
             <div class="form-log-info">
                 <label>
                     <!-- <p> -->
                     Username or Email Address
                     <!-- </p> -->
-                    <input type="text">
+                    <input name="username" required type="text">
                 </label>
                 <label>
                     <!-- <p> -->
                     Password
                     <!-- </p> -->
-                    <input name= "submit" type="password">
+                    <input name="password" required type="password">
                 </label>
             </div>
             <div class="form-buttons">
-                <button  type="button" onClick="document.location.href='/public/trade/trade'">Log In</button>
+                <button type="submit" >Log In</button>
                 <button type="button" onClick="document.location.href='/public/register/register'"> Register</button>
             </div>
         </form>
         <div class="filler">
         </div>
     </div>
+
+<?php
+      require_once '../app/models/User.php';
+
+      if(session_status()===PHP_SESSION_NONE)
+      {
+          session_start();
+      }
+      
+      if(isset($_SESSION["Username"]) && isset($_SESSION["Password"])) {
+
+          $user = getUser($_SESSION["Username"], $_SESSION["Password"]);
+
+          if(!empty($user)) {  
+
+              header('Location: /app/views/trade.php');
+              
+           }
+          else{
+              echo "empty user";
+          }
+      }
+      else 
+      {
+          echo "NO SESSION-test";
+      }
+  ?>
 </body>
 
 </html>
