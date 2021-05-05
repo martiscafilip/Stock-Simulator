@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php": "^8.0.0",
+        "finnhub/client": "1.0.0"
+    }
+}

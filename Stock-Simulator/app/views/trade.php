@@ -28,13 +28,13 @@
             <div class="Stocks">
                 <div class="searchStocks">
 
-                <img  class="searchbutton" src="/public/button.png">
-                     
+                    <img class="searchbutton" src="/public/button.png">
+
                 </div>
 
-               <div class="line">
+                <div class="line">
 
-               </div>
+                </div>
 
                 <div class="listStocks">
                     <span class="dot"></span>
@@ -66,7 +66,30 @@
         </div>
 
         <div class="tradesection">
-        <!-- <img class= "tesla" src="/public/tesla.png" alt="Tesla to the moon"> -->
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div id="tradingview_5890d"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-TSLA/" rel="noopener" target="_blank"><span class="blue-text">TSLA Chart</span></a> by TradingView</div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget({
+                        "width": 1500,
+                        "height": 560,
+                        "symbol": "NASDAQ:TSLA",
+                        "timezone": "Europe/Athens",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "range": "1D",
+                        "hide_side_toolbar": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_5890d"
+                    });
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
         </div>
 
         <div class="sellbuy">
@@ -80,4 +103,5 @@
 
 
 </body>
+
 </html>

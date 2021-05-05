@@ -12,9 +12,19 @@ let counterCoinBtn = 1;
 menuBtn.addEventListener('click', onClick);
 coinBtn.addEventListener('click', onclickCoin);
 
+
+function hope(event) {
+    socket.send(JSON.stringify({ 'type': 'subscribe-news', 'symbol': 'AAPL' }))
+    console.log('Message from server ', event.data);
+}
+
+
+
 function onClick() {
 
     if (counterPressButton >= 1) {
+
+
         counterPressButton = 0;
         navSlide.classList.remove('is--open');
         document.body.removeEventListener('click', onClickBody);

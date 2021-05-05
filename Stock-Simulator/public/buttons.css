@@ -28,6 +28,7 @@
     border: 2px solid #001116;
     transform: translateX(-120%);
     transition: transform 0.4s cubic-bezier(0, 1.2, 0.88, 1.49);
+    z-index: 3;
     /* transition: transform 0.7s cubic-bezier(0, 1.2, 1, -0.11); */
 }
 
