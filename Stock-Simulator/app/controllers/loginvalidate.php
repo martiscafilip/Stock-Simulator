@@ -2,9 +2,8 @@
     <?php
     require_once '../models/ConnectionManager.php';
     require_once '../models/User.php';
-    require_once('../../vendor/autoload.php');
+    require_once ('../../vendor/autoload.php');
     require_once '../../vendor/finnhub/client/lib/Configuration.php';
-
     require_once '../../vendor/guzzlehttp/guzzle/src/Client.php';
 
     $manager = new ConnectionManager;
