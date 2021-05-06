@@ -24,7 +24,7 @@
             <a href="/public/account/account"> Account </a>
             <a href="/public/trade/trade"> Trade</a>
             <a href="/public/leaderBoard/leaderBoard"> Leaderboard</a>
-            <a href="/public/home/login"> Log Out</a>
+            <a href="/public/logout"> Log Out</a>
         </nav>
     </header>
     

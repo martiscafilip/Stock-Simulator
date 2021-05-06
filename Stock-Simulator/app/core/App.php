@@ -9,6 +9,7 @@ class App
     public function __construct()
     {
         $url = $this->parseURL();
+        echo("<script>console.log('PHP: " . $url[0] . "');</script>");
 
         if(file_exists('../app/controllers/' . $url[0] . '.php'))
         {
@@ -19,11 +20,15 @@ class App
         require_once '../app/controllers/' . $this->controller . '.php';
         
         $this->controller = new $this->controller;
+
+       
+
     
         if(isset($url[1]))
         {
             if(method_exists($this->controller, $url[1]))
             {
+                 echo("<script>console.log('PHP: " . $url[1] . "');</script>");
                $this->method = $url[1];
                unset($url[1]);
             }
