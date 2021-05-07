@@ -76,8 +76,18 @@ body{
 	padding: 10px;
 	outline: none;
 }
+.form_wrap  select{
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid #9597a6;
+	padding: 10px;
+	outline: none;
+}
 
 .form_wrap  input[type="text"]:focus{
+	border-color: #0d0047;
+}
+.form_wrap  select:focus{
 	border-color: #0d0047;
 }
 .form_wrap  input[type="password"]:focus{
@@ -372,6 +382,14 @@ body{
         outline: none;
     }
     .form_wrap  input[type="password"]{
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #9597a6;
+        padding: 4px;
+        outline: none;
+    }
+
+    .form_wrap  select{
         width: 100%;
         border-radius: 10px;
         border: 1px solid #9597a6;
