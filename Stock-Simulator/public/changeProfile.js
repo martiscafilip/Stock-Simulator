@@ -6,5 +6,11 @@ for(var i = 0; i<profiles.length; i++){
 
 
 function redirect(e){
-    location.replace("/public/trade/trade");
+   
+    var name = e.path[2].getElementsByClassName("name")[0].innerHTML;
+
+    var data = "name=" + name;
+    console.log(data);
+    
+    location.replace("/app/models/ModifySessionAccount.php?" + data);
 } 

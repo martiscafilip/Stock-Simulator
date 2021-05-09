@@ -31,12 +31,20 @@
     
     <?php
     
-        $userString = file_get_contents("./leaderBoard.json");
-        $userArray = json_decode($userString);
+        //                     if($user->profit[0] == '+')
+        //                         echo "<p class='green_color'>";
+        //                     else if($user->profit[0] == '-')
+        //                         echo "<p class='red_color'>" ;
+
+        
+        require_once '../app/models/UserForLeaderboard.php';
+
+        $leaderboard = getTop();
         $rankPosition = 0;
         echo "<div>";
             echo "<div class='ranking_pool'>";
-                foreach($userArray as $user){
+                // foreach($leaderboard as $user){
+                while ($user = pg_fetch_row($leaderboard)){
                     echo "<div class='ranking'>";
                         $rankPosition++;
 
@@ -51,21 +59,21 @@
                             
 
                                 echo $rankPosition; 
-                                echo "<img class='avatar_photo' src='" . $user->profilPath . "' alt='avatar photo'>";
+                                echo "<img class='avatar_photo' src='" . $user[3] . "' alt='avatar photo'>";
 
                             echo "</div>";
 
 
                         echo "<div class='user_info'> ";
-                                echo "<p class='name'>" . $user->firstName . " " . $user->secondName . "</p>";
-                                echo "<p>" . $user->country . "</p>";
+                                echo "<p class='name'>" . $user[0] . "</p>";
+                                echo "<p>" . $user[1] . "</p>";
 
-                            if($user->profit[0] == '+')
+                            if($user[2] >= 0)
                                 echo "<p class='green_color'>";
-                            else if($user->profit[0] == '-')
+                            else if($user[2][0] < 0)
                                 echo "<p class='red_color'>" ;
 
-                                echo $user->profit . "</p>";
+                                echo $user[2] . "</p>";
 
                         echo "</div>";
                     echo "</div>";
@@ -75,6 +83,9 @@
                 echo "Global Leaderboard";
             echo "</div>";
         echo "</div>";
+
+
+
     ?>
 
 

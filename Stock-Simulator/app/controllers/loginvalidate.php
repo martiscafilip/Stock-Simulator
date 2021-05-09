@@ -37,6 +37,7 @@
             session_start();
             $_SESSION["Username"] = $user;
             $_SESSION["Password"] = hash("md5", $password);
+            $_SESSION["Account"] = getAccount($user);
             header('Location: ../views/trade.php');
         }
     }
