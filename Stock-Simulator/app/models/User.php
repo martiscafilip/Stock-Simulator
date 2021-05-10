@@ -30,3 +30,34 @@ class User
         
         return null;
     }
+
+    function getAccount($username){
+        $managerr = new ConnectionManager;
+        $conn = $managerr->get_conn();
+    
+        $query = "SELECT accountnr
+                    FROM account
+                    WHERE name = '$username'"; 
+       
+       $result = pg_query($conn, $query);
+       if(!$result){
+           echo "An error occured!\n";
+           return null;
+       }
+       $fetch = pg_fetch_row($result);
+        if(!empty($fetch )){
+            return $fetch[0];
+        }
+        else 
+            return null;
+    }
+
+    function modifySessionAccount($name){
+
+        if(session_status()===PHP_SESSION_NONE)
+        {
+            session_start();
+        }
+        
+        $_SESSION["Account"] = getAccount($name);
+    }

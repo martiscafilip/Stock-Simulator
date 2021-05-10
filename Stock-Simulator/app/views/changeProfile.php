@@ -31,29 +31,49 @@
     
     <?php
     
-        $profilesString = file_get_contents("./changeProfile.json");
-        $profilesArray = json_decode($profilesString);
+        //                     if($profile->profit[0] == '+')
+        //                         echo "<p class='green_color'>";
+        //                     else if($profile->profit[0] == '-')
+        //                         echo "<p class='red_color'>" ;
+
+
+
+        require_once '../app/models/ChangeProfileModel.php';
+
+        if(session_status()===PHP_SESSION_NONE)
+        {
+            session_start();
+        }
+
+        if(isset($_SESSION["Username"]) && isset($_SESSION["Password"] )) {
+            $profilesArray = getProfiles(getEmail($_SESSION["Username"]));
+        }
+
 
         echo "<div>";
             echo "<div class='profile_pool'>";
-                foreach($profilesArray as $profile){
-                    echo "<div class='profile'>";
+                // foreach($profilesArray as $profile){
+                while ($profile = pg_fetch_row($profilesArray)){
+                    echo "<div class='profile' >";
 
                         echo "<div class='profile_avatar'> "; 
-                            echo "<input class='avatar_photo' type='image' src='" . $profile->profilPath . "' alt='avatar photo'>";
+                            echo "<input class='avatar_photo' type='image' src='" . $profile[2] . "' alt='avatar photo'>";
                         echo "</div>";
 
 
                         echo "<div class='profile_info'> ";
-                                echo "<p class='name'>" . $profile->firstName . " " . $profile->secondName . "</p>";
-                                echo "<p>" . $profile->country . "</p>";
+                            if($profile[3] == getAccountName($_SESSION["Account"]))
+                                echo "<p class='name red_color'>" . $profile[3] . "</p>";
+                            else
+                                echo "<p class='name'>" . $profile[3] . "</p>";
+                                // echo "<p>" . $profile->country . "</p>";
 
-                            if($profile->profit[0] == '+')
+                            if($profile[1] >= 0)
                                 echo "<p class='green_color'>";
-                            else if($profile->profit[0] == '-')
+                            else if($profile[1] < 0)
                                 echo "<p class='red_color'>" ;
 
-                                echo $profile->profit . "</p>";
+                                echo $profile[1] . "</p>";
 
                         echo "</div>";
                     echo "</div>";
@@ -67,6 +87,7 @@
 
 
     <script src="/public/side-menu.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="/public/changeProfile.js"></script>
     
 </body>
