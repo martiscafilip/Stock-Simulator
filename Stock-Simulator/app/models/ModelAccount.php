@@ -46,7 +46,6 @@ function UpdateCurrentAvatar($avatar_id,$accountnr){
     return 1;
 }
 
-
 function getAllAvatars()
 {
 
@@ -64,4 +63,45 @@ function getAllAvatars()
    }
       
    return $contor?? null;
+}
+
+function getUsername($accountnr)
+{
+   $managerr = new ConnectionManager;
+   $conn = $managerr->get_conn();
+
+   $query = "SELECT a.name FROM account a WHERE a.accountnr=$1";
+
+    pg_prepare($conn, "stm", $query) 
+    or die ("Cannot prepare statement\n"); 
+
+   $results = pg_execute($conn, "stm",array($accountnr) )
+    or die ("Cannot execute statement\n"); 
+
+    $row = pg_fetch_row($results);
+        if(!empty($row ))
+        {
+            return $row[0];
+        }
+        else 
+        
+        return null;
+
+}
+
+
+function putFeedback($message,$accountnr){
+
+   $managerr = new ConnectionManager;
+   $conn = $managerr->get_conn();
+
+
+   $query="insert into usersfeedback (msg,msgdate,accountnr) values ($1,current_timestamp,$2)";
+   pg_prepare($conn, "feedback", $query) 
+    or die ("Cannot prepare statement\n");
+
+    $results = pg_execute($conn, "feedback",array($message,$accountnr) )
+    or die ("Cannot execute statement\n");
+
+    return 1;
 }
