@@ -54,7 +54,7 @@
             echo "<div class='profile_pool'>";
                 // foreach($profilesArray as $profile){
                 while ($profile = pg_fetch_row($profilesArray)){
-                    echo "<div class='profile' value='" . $profile[3] . "'>";
+                    echo "<div class='profile' >";
 
                         echo "<div class='profile_avatar'> "; 
                             echo "<input class='avatar_photo' type='image' src='" . $profile[2] . "' alt='avatar photo'>";
@@ -67,9 +67,6 @@
                             else
                                 echo "<p class='name'>" . $profile[3] . "</p>";
                                 // echo "<p>" . $profile->country . "</p>";
-                                echo "<p>" . $_SESSION["Username"] . "</p>";
-                                echo "<p>" . $_SESSION["Password"] . "</p>";
-                                echo "<p>" . $_SESSION["Account"] . "</p>";
 
                             if($profile[1] >= 0)
                                 echo "<p class='green_color'>";
