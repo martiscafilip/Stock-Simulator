@@ -63,6 +63,7 @@ header {
 
 .wrapper-avatar {
   height: 17vh;
+  min-height: 105px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,19 +71,19 @@ header {
 }
 
 .wrapper-info {
-  height: 67vh;
+  height: 55vh;
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .info-left {
-  height: 67vh;
+  height: 55vh;
   width: 50vw;
 }
 
 .info-right {
-  height: 67vh;
+  height: 55vh;
   width: 50vw;
 }
 
@@ -95,15 +96,20 @@ header {
   display: flex;
   flex-direction: row;
 }
-
+.avatar-icon{
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
 .user_avatar {
-  height: 12vh;
-  width: 6vw;
+  width: 100%;
+  height:100%;
   border-radius: 50px;
 }
 
 .username {
   font-size: 4vh;
+  
   color: rgb(255, 255, 255);
   margin: 0%;
 }
@@ -132,7 +138,9 @@ header {
   border-radius: 10px;
   width: 15vw;
   height: 25vh;
-  top: 2%;
+  min-height: 170px;
+  min-width: 170px;
+  top: 30px;
   left: 42.5%;
   right: 15px;
   background-color: #2ac60b;
@@ -334,7 +342,7 @@ a:hover {
 
 @media screen and (max-width: 1300px) {
   .wrapper-info {
-    height: 67vh;
+    height: 55vh;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -342,12 +350,12 @@ a:hover {
   }
 
   .info-left {
-    height: 67vh;
+    height: 55vh;
     width: 90vw;
   }
 
   .info-right {
-    height: 67vh;
+    height: 55vh;
     width: 90vw;
   }
 
@@ -450,8 +458,13 @@ a:hover {
 }
 
 @media screen and (max-width: 420px) {
+  .avatar-icon{
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+  }
   .wrapper-info {
-    height: 67vh;
+  height: 55vh;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -459,12 +472,12 @@ a:hover {
   }
 
   .info-left {
-    height: 67vh;
+    height: 55vh;
     width: 90vw;
   }
 
   .info-right {
-    height: 67vh;
+    height: 55vh;
     width: 90vw;
   }
 
@@ -606,10 +619,17 @@ a:hover {
 }
 
 @media (max-height: 450px) {
+  .avatar-icon{
+    height: 90px;
+    width: 90px;
+    border-radius: 50px;
+  }
   .open-button {
     display: none;
   }
-
+  .username{
+    font-size: 20px;
+  }
   .form-user {
     display: none;
   }

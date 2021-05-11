@@ -39,11 +39,14 @@
     }
     $array = getAllAvatars();
     $currentAvatar = getCurrentAvatar(1); //REPLACE $_SESSION["Account"]
+    $username = getUsername(1); //REPLACE $_SESSION["Account"]
 
     echo "<div class='wrapper'>";
     echo "<div class='wrapper-avatar'>";
+    echo "<div class='avatar-icon'>";
     echo "<input type='image' class='user_avatar' id='imagesrc' src='" . $currentAvatar . "' alt='Avatar cont utilizator'>";
-    echo "<p class='username'>redtiger704</p>";
+    echo "</div>";
+    echo "<p class='username'>" . $username . "</p>";
     echo "</div>";
 
     echo "<div class='wrapper-info'>";
@@ -108,9 +111,9 @@
     echo "<h1 class='form-title'>Give us feedback</h1>";
 
     echo "<label for='msg'><b>Message</b></label>";
-    echo "<textarea placeholder='Type message..' id='msg' required></textarea>";
+    echo "<textarea name='textarea' placeholder='Type message..' id='msg' required type='text'></textarea>";
 
-    echo "<button type='submit' class='btn'>Send</button>";
+    echo "<button type='submit' class='btn send' id='message' name='message' onclick='collect()'>Send</button>";
     echo "<button type='button' class='btn cancel' onclick='closeForm()'>Close</button>";
     echo "</div>";
     echo "</div>";
@@ -174,7 +177,7 @@
                 dataType: 'json',
                 data: {
                     functionname: 'UpdateCurrentAvatar',
-                    arguments: [js_array[index][0], 7]/////$_SESSION["Account"]
+                    arguments: [js_array[index][0], 7] /////$_SESSION["Account"]
                 },
 
                 success: function(obj, textstatus) {
@@ -185,11 +188,36 @@
                     }
                 }
             });
-            console.log("am facutttttttttttttttttttttttttttt",js_array[index][0]);
+            console.log("am facut", js_array[index][0]);
         }
 
+        function collect() {
+            if ($.trim($("textarea").val()) != "") {
+                console.log("aicii",$("textarea").val());
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: 'http://localhost:3000/app/controllers/updateAccount.php',
+                    dataType: 'json',
+                    data: {
+                        functionname: 'putFeedback',
+                        arguments: [$.trim($("textarea").val()), 7 ] /////$_SESSION["Account"]
+                    },
+
+                    success: function(obj, textstatus) {
+                        if (!('error' in obj)) {
+                            id = obj.result;
+                        } else {
+                            console.log(obj.error);
+                        }
+                    }
+                });
+                $('#msg').val('');
+
+            }
+        }
     </script>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="/public/try.js"></script>
 
 </body>

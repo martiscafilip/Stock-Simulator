@@ -22,6 +22,15 @@
                    $aResult['result'] = UpdateCurrentAvatar(($_POST['arguments'][0]), ($_POST['arguments'][1]));
                }
                break;
+            
+            case 'putFeedback':
+                if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 2) ) {
+                    $aResult['error'] = 'Error in arguments!';
+                }
+                else {
+                    $aResult['result'] = putFeedback(($_POST['arguments'][0]), ($_POST['arguments'][1]));
+                }
+                break;
 
             default:
                $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
