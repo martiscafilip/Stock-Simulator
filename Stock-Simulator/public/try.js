@@ -34,11 +34,40 @@ function onclickCoin() {
     console.log(counterCoinBtn);
 
     document.getElementsByClassName("coin")[0].innerHTML = "$";
+    replace("changeCurrencyToUSD");
+    console.log("apellllll");
+
     return;
   }
   document.getElementsByClassName("coin")[0].innerHTML = "€";
+  replace("changeCurrencyToEUR");
   counterCoinBtn += 1;
   console.log(counterCoinBtn);
+}
+
+function replace(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "POST",
+    "http://localhost:3000/app/controllers/updateCurrency.php",
+    true
+  );
+  xhr.onload = function () {
+    var jsonResponse = JSON.parse(this.responseText);
+    console.log("result", jsonResponse["result"]);
+    var calcul = document.getElementsByName("balance")[0].textContent * jsonResponse["result"];
+    console.log(calcul);
+    var roundedString = calcul.toFixed(3);
+    var rounded = Number(roundedString);
+    document.getElementsByName("balance")[0].innerHTML = rounded;
+  };
+
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("functionname=" + name);
+}
+
+function ChangeValueCurrency(elem) {
+  console.log(elem);
 }
 
 function onClickBody(e) {
@@ -71,5 +100,3 @@ function openForm() {
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
-
-

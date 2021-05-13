@@ -1,6 +1,7 @@
 <?php
     require_once '../models/ConnectionManager.php';
     require_once '../models/putUserr.php';
+    
     $manager = new ConnectionManager;
     $conn = $manager->get_conn();
 

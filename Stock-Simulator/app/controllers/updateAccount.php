@@ -1,44 +1,44 @@
 <?php
-    header('Content-Type: application/json');
+header('Content-Type: application/json');
 
-    require_once '../models/ConnectionManager.php';
-    require_once '../models/ModelAccount.php';
+require_once '../models/ConnectionManager.php';
+require_once '../models/ModelAccount.php';
+require_once('../../vendor/autoload.php');
+require_once '../../vendor/finnhub/client/lib/Configuration.php';
+require_once '../../vendor/guzzlehttp/guzzle/src/Client.php';
 
 
-    $aResult = array();
+$aResult = array();
 
-    if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; }
+if (!isset($_POST['functionname'])) {
+    $aResult['error'] = 'No function name!';
+}
 
-    if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
+if (!isset($_POST['arg1']) && !isset($_POST['arg2'])) {
+    $aResult['error'] = 'No function arguments!';
+}
 
-    if( !isset($aResult['error']) ) {
+if (!isset($aResult['error'])) {
 
-        switch($_POST['functionname']) {
-            case 'UpdateCurrentAvatar':
-               if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 2) ) {
-                   $aResult['error'] = 'Error in arguments!';
-               }
-               else {
-                   $aResult['result'] = UpdateCurrentAvatar(($_POST['arguments'][0]), ($_POST['arguments'][1]));
-               }
-               break;
-            
-            case 'putFeedback':
-                if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 2) ) {
-                    $aResult['error'] = 'Error in arguments!';
-                }
-                else {
-                    $aResult['result'] = putFeedback(($_POST['arguments'][0]), ($_POST['arguments'][1]));
-                }
-                break;
+    switch ($_POST['functionname']) {
 
-            default:
-               $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
-               break;
-        }
+        case 'UpdateCurrentAvatar':
 
+            $aResult['result'] = UpdateCurrentAvatar(($_POST['arg1']), ($_POST['arg2']));
+            break;
+
+        case 'putFeedback':
+            $aResult['result'] = putFeedback(($_POST['arg1']), ($_POST['arg2']));
+
+            $items=getEmailUsername($_POST['arg2']);
+            $message=$items[0] . " " . $items[1] . "->" . $_POST['arg1'];
+            telegram($message);
+            break;
+
+        default:
+            $aResult['error'] = 'Not found function ' . $_POST['functionname'] . '!';
+            break;
     }
+}
 
-    echo json_encode($aResult);
-
-?>
+echo json_encode($aResult);

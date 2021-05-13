@@ -32,7 +32,19 @@
                 new GuzzleHttp\Client(),
                 $config
             );
-            echo $client->stockCandles('TSLA', '1', time() - 120, time());
+            $res=$client->stockCandles('TSLA', '1', time() - 120, time());
+            echo $res;
+            echo "---------->";
+            echo $res['c'][0];
+            echo "<-----------";
+            
+            $aux=(array)json_decode( $client->forexRates('USD'),true);
+            $aux2=(array)json_decode( $client->forexRates('EUR'),true);           
+                
+                echo strval($aux['quote']['EUR']);
+                echo "----><----";
+                echo strval($aux2['quote']['USD']);
+
         } else {
             session_start();
             $_SESSION["Username"] = $user;
