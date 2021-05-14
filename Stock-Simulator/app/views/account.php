@@ -38,8 +38,12 @@
         session_start();
     }
     $array = getAllAvatars();
-    $currentAvatar = getCurrentAvatar(1); //REPLACE $_SESSION["Account"]
-    $username = getUsername(1); //REPLACE $_SESSION["Account"]
+    $username = getUsername($_SESSION["Account"]); //REPLACE $_SESSION["Account"]
+    $currentAvatar = getCurrentAvatar($_SESSION["Account"]); //REPLACE $_SESSION["Account"]
+    $balance = getPortofValue($_SESSION["Account"]);
+    $rank = getGlobalRank($_SESSION["Account"]);
+    $profit = getProfit($_SESSION["Account"]);
+    $trades = getTradesUser($_SESSION["Account"]);
 
     echo "<div class='wrapper'>";
     echo "<div class='wrapper-avatar'>";
@@ -56,7 +60,7 @@
     echo "<div class='box-stats-special'>";
     echo "<div class='stats-value-special'>";
     echo "<p class='stats-title'>Portof. value</p>";
-    echo "<p class='stats-value-custom'>1,000.00</p>";
+    echo "<p class='stats-value-custom' name='balance'>" . $balance . "</p>";
     echo "</div>";
     echo "<button class='change-coin'><span class='coin'>€</span> </button>";
     echo "</div>";
@@ -72,7 +76,7 @@
     echo "<img class='user_info_icons' src='/public/profil-pictures/ranking-icon-65.png' alt='Utilizator-loc in clasament imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Global Rank</p>";
-    echo "<p class='stats-value'>N/A</p>";
+    echo "<p class='stats-value'>" . $rank . "</p>";
     echo "</div>";
     echo "</div>";
 
@@ -89,14 +93,14 @@
     echo "<img class='user_info_icons' src='/public/profil-pictures/money-transfer-icon-75.png' alt='Utilizator-comert imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Trades</p>";
-    echo "<p class='stats-value'>N/A</p>";
+    echo "<p class='stats-value'>" . $trades . "</p>";
     echo "</div>";
     echo "</div>";
     echo "<div class='info-box'>";
     echo "<img class='user_info_icons' src='/public/profil-pictures/profit-and-loss-icon-68.png' alt='Utilizator-pierderi imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Profitable</p>";
-    echo "<p class='stats-value'>0%</p>";
+    echo "<p class='stats-value'>" . $profit . "</p>";
     echo "</div>";
     echo "</div>";
 
@@ -132,6 +136,8 @@
 
     <script type='text/javascript'>
         var js_array = <?php echo json_encode($array); ?>;
+        var accountnr = <?php echo json_encode($_SESSION["Account"]); ?>;
+
         var index = 0
         var id = 0;
 
@@ -171,47 +177,41 @@
         function closeAvatar() {
             document.getElementById('imagesrc').src = js_array[index][1];
             document.getElementById("mySection").style.display = "none";
-            jQuery.ajax({
-                type: "POST",
-                url: 'http://localhost:3000/app/controllers/updateAccount.php',
-                dataType: 'json',
-                data: {
-                    functionname: 'UpdateCurrentAvatar',
-                    arguments: [js_array[index][0], 7] /////$_SESSION["Account"]
-                },
 
-                success: function(obj, textstatus) {
-                    if (!('error' in obj)) {
-                        id = obj.result;
-                    } else {
-                        console.log(obj.error);
-                    }
-                }
-            });
-            console.log("am facut", js_array[index][0]);
+            var xhr = new XMLHttpRequest();
+            xhr.open(
+                "POST",
+                "http://localhost:3000/app/controllers/updateAccount.php",
+                true
+            );
+            xhr.onload = function() {
+                var jsonResponse = JSON.parse(this.responseText);
+                console.log("result->", jsonResponse["result"]);
+            };
+
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("functionname=UpdateCurrentAvatar&arg1=" + js_array[index][0] + "&arg2=" + accountnr);
+            $('#msg').val('');
+
+
         }
 
         function collect() {
             if ($.trim($("textarea").val()) != "") {
-                console.log("aicii",$("textarea").val());
+                console.log("aicii", $("textarea").val());
+                var xhr = new XMLHttpRequest();
+                xhr.open(
+                    "POST",
+                    "http://localhost:3000/app/controllers/updateAccount.php",
+                    true
+                );
+                xhr.onload = function() {
+                    var jsonResponse = this.responseText;
+                    console.log("result->", jsonResponse);
+                };
 
-                jQuery.ajax({
-                    type: "POST",
-                    url: 'http://localhost:3000/app/controllers/updateAccount.php',
-                    dataType: 'json',
-                    data: {
-                        functionname: 'putFeedback',
-                        arguments: [$.trim($("textarea").val()), 7 ] /////$_SESSION["Account"]
-                    },
-
-                    success: function(obj, textstatus) {
-                        if (!('error' in obj)) {
-                            id = obj.result;
-                        } else {
-                            console.log(obj.error);
-                        }
-                    }
-                });
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("functionname=putFeedback&arg1=" + $.trim($("textarea").val()) + "&arg2=" + accountnr);
                 $('#msg').val('');
 
             }
