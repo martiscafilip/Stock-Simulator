@@ -23,17 +23,16 @@
         if (empty($user)) {
 
             echo "INCORECT USERNAME OR PASSWORD!";
-
-
-
-
             $config = Finnhub\Configuration::getDefaultConfiguration()->setApiKey('token', 'c244gciad3ifufi6gd3g');
             $client = new Finnhub\Api\DefaultApi(
                 new GuzzleHttp\Client(),
                 $config
             );
-            $res=$client->stockCandles('TSLA', '1', time() - 120, time());
-            echo $res;
+             $res=$client->stockCandles('PINS', '1', time() - 120, time());
+            // $res= $client->cryptoSymbols('BINANCE');
+            //  print_r($res);
+
+             echo $res;
             echo "---------->";
             echo $res['c'][0];
             echo "<-----------";

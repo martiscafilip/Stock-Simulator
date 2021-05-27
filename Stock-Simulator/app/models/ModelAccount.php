@@ -1,5 +1,9 @@
 <?php
 require_once 'ConnectionManager.php';
+require_once  'Stocks.php';
+require_once '..\..\Stock-Simulator\vendor\autoload.php';
+require_once '..\..\Stock-Simulator\vendor\finnhub\client\lib\Configuration.php';
+require_once '..\..\Stock-Simulator\vendor\guzzlehttp\guzzle\src\Client.php';
 
 
 class Avatar
@@ -72,7 +76,7 @@ function getProfit($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
-    $query = "SELECT units,price,ticker FROM transactionstestemail WHERE accountnr=$1";
+    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr=$1";
 
     pg_prepare($conn, "profit", $query)
         or die("Cannot prepare statement\n");
@@ -81,10 +85,10 @@ function getProfit($accountnr)
         or die("Cannot execute statement\n");
 
     $profit = 0;
-    while ($row = pg_fetch_row($results)) {
 
-        $currentprice = getCurrentPrice($row['ticker']);
-        $profit += $currentprice * $row['units'] - $row['price'] * $row['units'];
+    while ($row = pg_fetch_row($results)) {
+        $currentprice = getCurrentPrice(getTickerFinn($row[2]));
+        $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
     }
     return $profit;
 }
@@ -125,7 +129,7 @@ function getTradesUser($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
-    $query = "SELECT count(*) FROM transactionstestemail where accountnr=$1";
+    $query = "SELECT count(*) FROM transactions where accountnr=$1";
 
     pg_prepare($conn, "trades", $query)
         or die("Cannot prepare statement\n");
