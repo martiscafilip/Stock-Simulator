@@ -87,7 +87,7 @@
 
 
     <script src="/public/side-menu.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
     <script src="/public/changeProfile.js"></script>
     
 </body>

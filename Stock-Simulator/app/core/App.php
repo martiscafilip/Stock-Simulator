@@ -9,7 +9,7 @@ class App
     public function __construct()
     {
         $url = $this->parseURL();
-        echo("<script>console.log('PHP: " . $url[0] . "');</script>");
+        // echo("<script>console.log('PHP: " . $url[0] . "');</script>");
 
         if(file_exists('../app/controllers/' . $url[0] . '.php'))
         {
@@ -28,7 +28,7 @@ class App
         {
             if(method_exists($this->controller, $url[1]))
             {
-                 echo("<script>console.log('PHP: " . $url[1] . "');</script>");
+                //  echo("<script>console.log('PHP: " . $url[1] . "');</script>");
                $this->method = $url[1];
                unset($url[1]);
             }
