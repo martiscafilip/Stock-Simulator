@@ -190,7 +190,7 @@ body > div {
         padding-top: 20px;
     }
     body > div{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     .menu-nav > a{
         margin-left: 0px;
@@ -254,7 +254,7 @@ body > div {
         transform: scale(1);
     }
     body > div{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     .menu-nav > a{
         margin-left: 0px;
