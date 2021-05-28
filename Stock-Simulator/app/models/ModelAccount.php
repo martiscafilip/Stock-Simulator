@@ -72,7 +72,7 @@ function getProfit($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
-    $query = "SELECT units,price,ticker FROM transactionstestemail WHERE accountnr=$1";
+    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr=$1";
 
     pg_prepare($conn, "profit", $query)
         or die("Cannot prepare statement\n");
@@ -125,7 +125,7 @@ function getTradesUser($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
-    $query = "SELECT count(*) FROM transactionstestemail where accountnr=$1";
+    $query = "SELECT count(*) FROM transactions where accountnr=$1";
 
     pg_prepare($conn, "trades", $query)
         or die("Cannot prepare statement\n");

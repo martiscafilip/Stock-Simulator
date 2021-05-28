@@ -35,39 +35,76 @@ function onclickCoin() {
 
     document.getElementsByClassName("coin")[0].innerHTML = "$";
     replace("changeCurrencyToUSD");
-    console.log("apellllll");
+    replaceSessionCurrency("USD");
+    console.log("apellllll3");
 
     return;
   }
   document.getElementsByClassName("coin")[0].innerHTML = "€";
   replace("changeCurrencyToEUR");
+  replaceSessionCurrency("EUR");
   counterCoinBtn += 1;
   console.log(counterCoinBtn);
 }
 
 function replace(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open(
-    "POST",
-    "http://localhost:3000/app/controllers/updateCurrency.php",
-    true
-  );
-  xhr.onload = function () {
-    var jsonResponse = JSON.parse(this.responseText);
-    console.log("result", jsonResponse["result"]);
-    var calcul = document.getElementsByName("balance")[0].textContent * jsonResponse["result"];
-    console.log(calcul);
-    var roundedString = calcul.toFixed(3);
-    var rounded = Number(roundedString);
-    document.getElementsByName("balance")[0].innerHTML = rounded;
-  };
+  fetch("http://localhost:3000/app/controllers/updateCurrency.php", {
+    // Adding method type
+    method: "POST",
 
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send("functionname=" + name);
+    // Adding body or contents to send
+    body: JSON.stringify({
+      functionname: name
+    }),
+
+    // Adding headers to the request
+    headers: new Headers({
+      "Content-Type": "application/json", // sent request
+      "Accept": "application/json",
+    }),
+  })
+    // Converting to JSON
+    .then((response) => response.json())
+
+    // Displaying results to console
+    .then((json) => {
+      console.log(json);
+      var jsonResponse = json
+      var calcul = document.getElementsByName("balance")[0].textContent * jsonResponse["result"];
+      console.log("calculllll : "+calcul);
+      var roundedString = calcul.toFixed(3);
+      var rounded = Number(roundedString);
+      document.getElementsByName("balance")[0].innerHTML = rounded;
+    });
 }
 
-function ChangeValueCurrency(elem) {
-  console.log(elem);
+function replaceSessionCurrency(currentCurrency) {
+
+
+  fetch("http://localhost:3000/app/controllers/updateCurrency.php", {
+
+    // Adding method type
+    method: "POST",
+
+    // Adding body or contents to send
+    body: JSON.stringify({
+        functionname: currentCurrency
+    }),
+
+    // Adding headers to the request
+    headers: new Headers({
+        "Content-Type": "application/json", // sent request
+        "Accept": "application/json"
+
+    }),
+})
+
+// Converting to JSON
+.then(response => response.json())
+
+// Displaying results to console
+.then(json => console.log(json));
+
 }
 
 function onClickBody(e) {
