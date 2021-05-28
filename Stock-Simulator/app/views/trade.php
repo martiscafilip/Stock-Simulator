@@ -64,7 +64,13 @@
             <form action="../../app/controllers/orderPlace.php" method="GET" class="orderForm" id="orderForm">
             <div class="popup" id="popup">
                 <div class="popup-head">
-                    Cash available :
+                    <div> Cash available : </div>
+                    <div>
+                        <?php
+                        require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\app\models\User.php';
+                        echo "<p>" . cashAvaible($_SESSION['Username'],$_SESSION['Password'], $_SESSION["Account"]) . "</p>";
+                        ?>
+                    </div>
                 </div>
 
                 <div class="popup-body">

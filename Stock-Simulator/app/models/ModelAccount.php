@@ -1,9 +1,9 @@
 <?php
 require_once 'ConnectionManager.php';
 require_once  'Stocks.php';
-require_once '..\..\Stock-Simulator\vendor\autoload.php';
-require_once '..\..\Stock-Simulator\vendor\finnhub\client\lib\Configuration.php';
-require_once '..\..\Stock-Simulator\vendor\guzzlehttp\guzzle\src\Client.php';
+require_once '../../Stock-Simulator/vendor/autoload.php';
+require_once '../../Stock-Simulator/vendor/finnhub/client/lib/Configuration.php';
+require_once '../../Stock-Simulator/vendor/guzzlehttp/guzzle/src/Client.php';
 
 
 class Avatar
