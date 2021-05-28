@@ -8,16 +8,26 @@ require_once '../../vendor/finnhub/client/lib/Configuration.php';
 require_once '../../vendor/guzzlehttp/guzzle/src/Client.php';
 
 
-$aResult = array();
 
-if (!isset($_POST['functionname'])) {
-    $aResult['error'] = 'No function name!';
-}
+$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
+$aResult = [
+    'error' => 'Nothing happened',
+    'result' => null,
+  ];
+  
 
-if (!isset($aResult['error'])) {
+if ($contentType === "application/json") {
+  //Receive the RAW post data.
+  $content = trim(file_get_contents("php://input"));
 
-    switch ($_POST['functionname']) {
+  $decoded = json_decode($content, true);
+
+  
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    switch ($decoded['functionname']) {
         case 'changeCurrencyToEUR':
 
             $config = Finnhub\Configuration::getDefaultConfiguration()->setApiKey('token', 'c244gciad3ifufi6gd3g');
@@ -41,9 +51,19 @@ if (!isset($aResult['error'])) {
             $aResult['result'] = $aux['quote']['USD'];
 
             break;
+        case 'EUR':
+            
+            $_SESSION["Currency"]="EUR";
+            $aResult['result'] ='euro';
+            break;
+
+        case 'USD': 
+            $_SESSION["Currency"]="USD";
+            $aResult['result'] ='dolar';
+            break;
 
         default:
-            $aResult['error'] = 'Not found function ' . $_POST['functionname'] . '!';
+            $aResult['error'] = 'Not found function ' . $decoded['functionname'] . '!';
             break;
     }
 }
