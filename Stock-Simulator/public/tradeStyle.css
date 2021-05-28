@@ -11,7 +11,7 @@ body {
     background-color: rgb(37, 107, 101);
 }
 
-.Stocks {
+.stocksdiv {
     background-color: rgb(216, 219, 221);
     display: flex;
     height: 8vh;
@@ -60,7 +60,7 @@ body {
     align-items: center;
     background-color: rgb(169, 174, 177);
     text-align: center;
-    z-index: 2;
+    z-index: 1;
 }
 
 .flex {
@@ -77,7 +77,7 @@ body {
     position: relative;
     overflow: hidden;
     transition: 0.8s;
-    z-index: 3;
+    z-index: 5;
 }
 
 .buybutton {
@@ -124,7 +124,7 @@ body {
     height: 180%;
 }
 
-.dot {
+.listStocks>* {
     height: 8vh;
     line-height: 8vh;
     width: 8vh;
@@ -135,6 +135,10 @@ body {
     text-align: center;
     color: white;
     flex-shrink: 0;
+}
+
+.stocks:hover {
+    border: 2px solid red;
 }
 
 .header button {
@@ -169,4 +173,48 @@ body {
     align-items: center;
 }
 
-.searchbutton {}
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 30%;
+    /* max-width: 80%; */
+}
+
+#overlay {
+    transition: 200ms ease-in-out;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+    z-index: 9;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-head {
+    display: flex;
+    justify-content: space-between;
+}

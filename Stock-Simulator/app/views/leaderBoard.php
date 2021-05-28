@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leader Board</title>
     <link rel="stylesheet" href="/public/leaderBoard-style.css">
+    <link rel="shortcut icon" href="#">
+
 </head>
 <body>
     
@@ -37,47 +39,47 @@
         //                         echo "<p class='red_color'>" ;
 
         
-        require_once '../app/models/UserForLeaderboard.php';
+        require_once '../app/models/leaderboardModel.php';
 
-        $leaderboard = getTop();
-        $rankPosition = 0;
-        echo "<div>";
+        // $leaderboard = getTop();
+        // $rankPosition = 0;
+        echo "<div id='info'>";
             echo "<div class='ranking_pool'>";
-                // foreach($leaderboard as $user){
-                while ($user = pg_fetch_row($leaderboard)){
-                    echo "<div class='ranking'>";
-                        $rankPosition++;
+            //     // foreach($leaderboard as $user){
+            //     while ($user = pg_fetch_row($leaderboard)){
+            //         echo "<div class='ranking'>";
+            //             $rankPosition++;
 
-                        if($rankPosition == 1)
-                            echo "<div class='rank_avatar red_color'> ";
-                        else if($rankPosition == 2)
-                            echo "<div class='rank_avatar orange_color'> ";
-                        else if($rankPosition == 3)
-                            echo "<div class='rank_avatar yellow_color'> ";
-                        else
-                            echo "<div class='rank_avatar'> ";
+            //             if($rankPosition == 1)
+            //                 echo "<div class='rank_avatar red_color'> ";
+            //             else if($rankPosition == 2)
+            //                 echo "<div class='rank_avatar orange_color'> ";
+            //             else if($rankPosition == 3)
+            //                 echo "<div class='rank_avatar yellow_color'> ";
+            //             else
+            //                 echo "<div class='rank_avatar'> ";
                             
 
-                                echo $rankPosition; 
-                                echo "<img class='avatar_photo' src='" . $user[3] . "' alt='avatar photo'>";
+            //                     echo $rankPosition; 
+            //                     echo "<img class='avatar_photo' src='" . $user[3] . "' alt='avatar photo'>";
 
-                            echo "</div>";
+            //                 echo "</div>";
 
 
-                        echo "<div class='user_info'> ";
-                                echo "<p class='name'>" . $user[0] . "</p>";
-                                echo "<p>" . $user[1] . "</p>";
+            //             echo "<div class='user_info'> ";
+            //                     echo "<p class='name'>" . $user[0] . "</p>";
+            //                     echo "<p>" . $user[1] . "</p>";
 
-                            if($user[2] >= 0)
-                                echo "<p class='green_color'>";
-                            else if($user[2][0] < 0)
-                                echo "<p class='red_color'>" ;
+            //                 if($user[2] >= 0)
+            //                     echo "<p class='green_color'>";
+            //                 else if($user[2][0] < 0)
+            //                     echo "<p class='red_color'>" ;
 
-                                echo $user[2] . "</p>";
+            //                     echo $user[2] . "</p>";
 
-                        echo "</div>";
-                    echo "</div>";
-                }
+            //             echo "</div>";
+            //         echo "</div>";
+            //     }
             echo "</div>";
             echo "<div class='fixed'>";
                 echo "Global Leaderboard";
@@ -90,6 +92,7 @@
 
 
     <script src="/public/side-menu.js"></script>
+    <script src="/public/scripts/leaderboard.js"></script>
     
 </body>
 </html>

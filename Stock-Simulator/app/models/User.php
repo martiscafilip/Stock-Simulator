@@ -1,58 +1,131 @@
-<?php 
+<?php
 require_once 'ConnectionManager.php';
-class User 
+class User
 {
     public $name;
-
-    
-
-   
 }
- function getUser($username, $password) {
-    
+function getUser($username, $password)
+{
+
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
 
-    $query = "SELECT * FROM users WHERE username= $1 AND password = $2"; 
-    pg_prepare($conn, "prepare1", $query) 
-    or die ("Cannot prepare statement\n"); 
+    $query = "SELECT * FROM users WHERE username= $1 AND password = $2";
+    pg_prepare($conn, "prepare1", $query)
+        or die("Cannot prepare statement\n");
 
-   $results = pg_execute($conn, "prepare1", array($username, $password))
-    or die ("Cannot execute statement\n"); 
+    $results = pg_execute($conn, "prepare1", array($username, $password))
+        or die("Cannot execute statement\n");
 
     $row = pg_fetch_row($results);
-        if(!empty($row ))
-        {
-            return $row[1];
-        }
-        else 
-        
+    if (!empty($row)) {
+        return $row[1];
+    } else
+
+        return null;
+}
+
+function getEmailUser($username, $password)
+{
+
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+
+    $query = "SELECT * FROM users WHERE username= $1 AND password = $2";
+    pg_prepare($conn, "prepare11", $query)
+        or die("Cannot prepare statement\n");
+
+    $results = pg_execute($conn, "prepare11", array($username, $password))
+        or die("Cannot execute statement\n");
+
+    $row = pg_fetch_row($results);
+    if (!empty($row)) {
+        return $row[2];
+    } else
+
+        return null;
+}
+
+function getAccount($username)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+    $query = "SELECT accountnr
+                    FROM account
+                    WHERE name = '$username'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $fetch = pg_fetch_row($result);
+    if (!empty($fetch)) {
+        return $fetch[0];
+    } else
+        return null;
+}
+
+function modifySessionAccount($name)
+{
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $_SESSION["Account"] = getAccount($name);
+}
+
+function insertTransaction($email, $accountnr, $units, $price, $amount, $ticker)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+
+    $query = "INSERT INTO transactions VALUES($1, $2, $3, $4, $5, $6)";
+    pg_prepare($conn, "prepare10", $query)
+        or die("Cannot prepare statement\n");
+
+    $results = pg_execute($conn, "prepare10", array($email, $accountnr, $units, $price, $amount, $ticker))
+        or die("Cannot execute statement\n");
+}
+
+function cashAvaible($username, $password,  $accountnr)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+    $email = getEmailUser($username, $password);
+
+    $query = "SELECT balance
+                    FROM account
+                    WHERE email = '$email' AND accountnr='$accountnr'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $balance = pg_fetch_row($result);
+    $query = "SELECT amount FROM transactions WHERE accountnr='$accountnr' AND email = '$email'";
+
+    $results = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
         return null;
     }
 
-    function getAccount($username){
-        $managerr = new ConnectionManager;
-        $conn = $managerr->get_conn();
-    
-        $query = "SELECT accountnr
-                    FROM account
-                    WHERE name = '$username'"; 
-       
-       $result = pg_query($conn, $query);
-       if(!$result){
-           echo "An error occured!\n";
-           return null;
-       }
-       $fetch = pg_fetch_row($result);
-        if(!empty($fetch )){
-            return $fetch[0];
-        }
-        else 
-            return null;
-    }
+    $sum = 0;
 
-    function modifySessionAccount($name){
+    while ($row = pg_fetch_row($results)) {
+        $sum = $sum + $row[0];
+    }
+ return $balance[0]-$sum;
+}
+
+
 
         if(session_status()===PHP_SESSION_NONE)
         {
@@ -61,3 +134,5 @@ class User
         
         $_SESSION["Account"] = getAccount($name);
     }
+
+
