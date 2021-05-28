@@ -118,9 +118,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                 </div>
                 <div class="buttondivsell">
-                    <button type="submit" name="selldivbutton" value="" id="" class="selldivbutton">SELL TRANSACTION</button>
+                    <button type="submit" name="selldivbutton"  class="selldivbutton">SELL TRANSACTION</button>
                 </div>
-
             </div>
         </form>
 
