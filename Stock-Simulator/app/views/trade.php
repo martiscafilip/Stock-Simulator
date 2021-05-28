@@ -1,3 +1,13 @@
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +23,7 @@
 </head>
 
 <body>
+
     <div class="flex">
         <div>
             <header class="header">
@@ -26,6 +37,8 @@
 
                 </nav>
             </header>
+
+
 
             <div class="stocksdiv">
                 <div class="searchStocks">
@@ -62,71 +75,55 @@
 
         <div class="tradesection">
             <form action="../../app/controllers/orderPlace.php" method="GET" class="orderForm" id="orderForm">
-            <div class="popup" id="popup">
-                <div class="popup-head">
-                    <div> Cash available : </div>
-                    <div>
-                        <?php
-                        require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\app\models\User.php';
-                        echo "<p>" . cashAvaible($_SESSION['Username'],$_SESSION['Password'], $_SESSION["Account"]) . "</p>";
-                        ?>
-                    </div>
-                </div>
-
-                <div class="popup-body">
-                    <div>Amount: </div>
-                    <div>
-                        <input type="number" class="amount" name="cash">
+                <div class="popup" id="popup">
+                    <div class="popup-head">
+                        <div> Cash available : </div>
+                        
+                            <?php
+                            require_once '../../Stock-Simulator/app/models/User.php';
+                            echo "<p>" . cashAvaible($_SESSION['Username'], $_SESSION['Password'], $_SESSION["Account"]) . "</p>";
+                            ?>
+                        
                     </div>
 
-                </div>
-                <button type="submit" name="orderbutton" value="TSLA" id="test">PLACE ORDER</button>
+                    <div class="popup-body">
+                        <div>Amount: </div>
+                        <div>
+                            <input type="number" class="amount" name="cash">
+                        </div>
+
+                    </div>
+                    <button type="submit" name="orderbutton" value="TSLA" id="test">PLACE ORDER</button>
             </form>
-            </div>
+        </div>
 
 
-            <div id="overlay"></div>
+        <div id="overlay"></div>
 
 
-            <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
-                <div id="tradingview_5890d"></div>
-                <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-TSLA/" rel="noopener" target="_blank"><span class="blue-text">TSLA Chart</span></a> by TradingView</div> -->
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    var name = "NASDAQ:TSLA";
-                    var test = document.getElementsByClassName("stocks");
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div id="tradingview_5890d"></div>
+            <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-TSLA/" rel="noopener" target="_blank"><span class="blue-text">TSLA Chart</span></a> by TradingView</div> -->
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                var name = "NASDAQ:TSLA";
+                var test = document.getElementsByClassName("stocks");
 
-                    for (var i = 0; i < test.length; i++) {
-                        console.log(test[i].id);
-                       
-                        test[i].addEventListener("click", clickOn);
-                    }
-                    var w = window.innerWidth;
-                    var h = document.getElementsByClassName("tradesection").clientHeight;
+                for (var i = 0; i < test.length; i++) {
+                    console.log(test[i].id);
 
-                    function clickOn(e) {
-                       document.getElementById("test").value=parseTicker(e.target.id);
+                    test[i].addEventListener("click", clickOn);
+                }
+                var w = window.innerWidth;
+                var h = document.getElementsByClassName("tradesection").clientHeight;
+
+                function clickOn(e) {
+                    document.getElementById("test").value = parseTicker(e.target.id);
                     //    console.log(document.getElementById("orderForm").action); 
-                        console.log(e.target.id);
-                        name = e.target.id;
-                        testt = new TradingView.widget({
-                            "width": w,
-                            "height": h,
-                            "symbol": name,
-                            "timezone": "Europe/Athens",
-                            "theme": "dark",
-                            "style": "1",
-                            "locale": "en",
-                            "toolbar_bg": "#f1f3f6",
-                            "enable_publishing": false,
-                            "range": "1D",
-                            "hide_side_toolbar": false,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_5890d"
-                        });
-                    }
-                    var testt = new TradingView.widget({
+                    console.log(e.target.id);
+                    name = e.target.id;
+                    testt = new TradingView.widget({
                         "width": w,
                         "height": h,
                         "symbol": name,
@@ -141,29 +138,44 @@
                         "allow_symbol_change": true,
                         "container_id": "tradingview_5890d"
                     });
+                }
+                var testt = new TradingView.widget({
+                    "width": w,
+                    "height": h,
+                    "symbol": name,
+                    "timezone": "Europe/Athens",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "range": "1D",
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true,
+                    "container_id": "tradingview_5890d"
+                });
 
-                    function parseTicker( ticker)
-                    {
-                       var splited = ticker.split(":");
-                       console.log(splited[1]);
-                        return splited[1];
-                    }
-                </script>
-            </div>
-            <!-- TradingView Widget END -->
+                function parseTicker(ticker) {
+                    var splited = ticker.split(":");
+                    console.log(splited[1]);
+                    return splited[1];
+                }
+            </script>
         </div>
+        <!-- TradingView Widget END -->
+    </div>
 
-        <div class="sellbuy">
-            <button data-popup-target="#popup" class="btn buybutton">BUY</button>
-            <button class="btn sellbutton">SELL</button>
-        </div>
+    <div class="sellbuy">
+        <button data-popup-target="#popup" class="btn buybutton">BUY</button>
+        <button class="btn sellbutton">SELL</button>
+    </div>
 
     </div>
     <script src="/public/try.js"></script>
     <script src="/public/popup.js"></script>
 
     <?php
-    
+
 
 
     ?>

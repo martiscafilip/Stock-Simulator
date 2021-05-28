@@ -213,3 +213,8 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+.popup-head {
+    display: flex;
+    justify-content: space-between;
+}

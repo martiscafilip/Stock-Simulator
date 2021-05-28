@@ -109,23 +109,20 @@ function cashAvaible($username, $password,  $accountnr)
         return null;
     }
     $balance = pg_fetch_row($result);
-
-
-
-
     $query = "SELECT amount FROM transactions WHERE accountnr='$accountnr' AND email = '$email'";
 
-    pg_prepare($conn, "profit", $query)
-        or die("Cannot prepare statement\n");
-
-    $results = pg_execute($conn, "profit", array($accountnr))
-        or die("Cannot execute statement\n");
+    $results = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
 
     $sum = 0;
 
     while ($row = pg_fetch_row($results)) {
         $sum = $sum + $row[0];
     }
-
-    return $balance[0]-$sum;
+ return $balance[0]-$sum;
 }
+
+
