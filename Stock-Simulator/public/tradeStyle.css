@@ -174,6 +174,9 @@ body {
 }
 
 .popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -184,7 +187,26 @@ body {
     z-index: 10;
     background-color: white;
     width: 30%;
-    /* max-width: 80%; */
+    min-width: 255px;
+    height: 50%;
+}
+
+.popupsell {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 11;
+    background-color: white;
+    width: 30%;
+    min-width: 255px;
+    height: 50%;
 }
 
 #overlay {
@@ -209,12 +231,125 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.popupsell.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
 .popup-body {
     display: flex;
     justify-content: space-between;
+    height: 30%;
 }
 
 .popup-head {
     display: flex;
     justify-content: space-between;
+    height: 30%;
+}
+
+.placeorderbtn {
+    height: 30%;
+}
+
+.cashavailble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    width: 45%;
+}
+
+.amounttext {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    font-size: x-large;
+    width: 45%;
+}
+
+.cashsum {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    width: 55%;
+}
+
+.amount {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    width: 55%;
+}
+
+.inputamount {
+    height: 20%;
+    width: 60%;
+}
+
+.placeorderbtn {
+    height: 80%;
+    width: 80%;
+    color: black;
+    background-color: rgb(103, 221, 103);
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.selldivbutton {
+    height: 80%;
+    width: 80%;
+    color: black;
+    background-color: rgb(231, 131, 131);
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.buttondiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+}
+
+.placeorderbtn:hover,
+.selldivbutton:hover {
+    color: white;
+}
+
+.listsellstocks {
+    height: 70%;
+}
+
+.wrapp {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttondivsell {
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    font-size: x-large;
+    height: 80%;
+    width: 100%;
+}
+
+.popupsell {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
 }

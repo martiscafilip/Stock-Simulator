@@ -74,25 +74,56 @@ if (session_status() === PHP_SESSION_NONE) {
             <form action="../../app/controllers/orderPlace.php" method="GET" class="orderForm" id="orderForm">
                 <div class="popup" id="popup">
                     <div class="popup-head">
-                        <div> Cash Available : </div>
-                        
-                            <?php
-                            require_once '../../Stock-Simulator/app/models/User.php';
-                            echo "<p>" . cashAvaible($_SESSION['Username'], $_SESSION['Password'], $_SESSION["Account"]) . "</p>";
-                            ?>
-                        
+                        <div class="cashavailble"> Cash Available : </div>
+
+                        <?php
+                        require_once '../../Stock-Simulator/app/models/User.php';
+                        echo "<p class=\"cashsum\">" . cashAvaible($_SESSION['Username'], $_SESSION['Password'], $_SESSION["Account"]) . "</p>";
+                        ?>
+
                     </div>
 
                     <div class="popup-body">
-                        <div>Amount: </div>
-                        <div>
-                            <input type="number" class="amount" name="cash">
+                        <div class="amounttext">Amount: </div>
+                        <div class="amount">
+                            <input required type="number" class="inputamount" name="cash">
                         </div>
 
                     </div>
-                    <button type="submit" name="orderbutton" value="TSLA" id="test">PLACE ORDER</button>
+                    <div class="buttondiv">
+                        <button type="submit" name="orderbutton" <?php
+                                                                   echo "value =".$_COOKIE['stock'];
+                                                                    ?>
+                                                                     id="test" class="placeorderbtn">PLACE ORDER</button>
+                    </div>
             </form>
+
         </div>
+        <form action="../../app/controllers/sellTransaction.php" method="GET" class="sellForm" id="sellForm">
+            <div class="popupsell" id="popupsell">
+                <div class="listsellstocks">
+                    <?php
+                    require_once '../../Stock-Simulator/app/models/User.php';
+                    $result = sellTrades($_COOKIE['stock'], $_SESSION['Username'], $_SESSION['Password'], $_SESSION["Account"]);
+
+                    echo "<div class=\"wrapp\">
+                <select name=\"value\" id=\"test2\" class=\"form-control\" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>";
+
+                    echo "<option class=\"form-options\" value=\"\" disabled selected>Open Trades</option>";
+                    while ($row = pg_fetch_row($result)) {
+                        echo "<option class=\"form-options\" value=" . $row[0] . ">" . "Price: " . $row[1] . " Amount: " . $row[2] . "</option>";
+                    }
+
+                    echo "</select></div>";
+                    ?>
+                </div>
+                <div class="buttondivsell">
+                    <button type="submit" name="selldivbutton" value="" id="" class="selldivbutton">SELL TRANSACTION</button>
+                </div>
+
+            </div>
+        </form>
+
 
 
         <div id="overlay"></div>
@@ -117,29 +148,14 @@ if (session_status() === PHP_SESSION_NONE) {
 
                 function clickOn(e) {
                     document.getElementById("test").value = parseTicker(e.target.id);
-                    //    console.log(document.getElementById("orderForm").action); 
-                    console.log(e.target.id);
-                    name = e.target.id;
-                    testt = new TradingView.widget({
-                        "width": w,
-                        "height": h,
-                        "symbol": name,
-                        "timezone": "Europe/Athens",
-                        "theme": "dark",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "range": "1D",
-                        "hide_side_toolbar": false,
-                        "allow_symbol_change": true,
-                        "container_id": "tradingview_5890d"
-                    });
+                    let cookievalue = "stock=" + parseTicker(e.target.id);
+                    document.cookie = cookievalue;
+                    location.reload();
                 }
                 var testt = new TradingView.widget({
                     "width": w,
                     "height": h,
-                    "symbol": name,
+                    "symbol": getCookie("stock"),
                     "timezone": "Europe/Athens",
                     "theme": "dark",
                     "style": "1",
@@ -151,6 +167,22 @@ if (session_status() === PHP_SESSION_NONE) {
                     "allow_symbol_change": true,
                     "container_id": "tradingview_5890d"
                 });
+
+                function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) == ' ') {
+                            c = c.substring(1);
+                        }
+                        if (c.indexOf(name) == 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
 
                 function parseTicker(ticker) {
                     var splited = ticker.split(":");
@@ -164,12 +196,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <div class="sellbuy">
         <button data-popup-target="#popup" class="btn buybutton">BUY</button>
-        <button class="btn sellbutton">SELL</button>
+        <button data-popupsell-target="#popupsell" class="btn sellbutton">SELL</button>
     </div>
 
     </div>
     <script src="/public/try.js"></script>
-    <script src="/public/popup.js"></script>
+    <script src="/public/scripts/popup.js"></script>
+    <script src="/public/scripts/popupsell.js"></script>
 
     <?php
 

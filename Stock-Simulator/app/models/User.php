@@ -34,13 +34,12 @@ function getEmailUser($username, $password)
     $conn = $managerr->get_conn();
 
 
-    $query = "SELECT * FROM users WHERE username= $1 AND password = $2";
-    pg_prepare($conn, "prepare11", $query)
-        or die("Cannot prepare statement\n");
-
-    $results = pg_execute($conn, "prepare11", array($username, $password))
-        or die("Cannot execute statement\n");
-
+    $query = "SELECT * FROM users WHERE username= '$username' AND password = '$password'";
+    $results = pg_query($conn, $query);
+    if (!$results) {
+        echo "An error occured!\n";
+        return null;
+    }
     $row = pg_fetch_row($results);
     if (!empty($row)) {
         return $row[2];
@@ -86,7 +85,7 @@ function insertTransaction($email, $accountnr, $units, $price, $amount, $ticker)
     $conn = $managerr->get_conn();
 
 
-    $query = "INSERT INTO transactions VALUES($1, $2, $3, $4, $5, $6)";
+    $query = "INSERT INTO transactions VALUES( nextval('idinc'),$1, $2, $3, $4, $5, $6)";
     pg_prepare($conn, "prepare10", $query)
         or die("Cannot prepare statement\n");
 
@@ -169,6 +168,23 @@ function performance($username, $password,  $accountnr)
         $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
     }
      return (($profit/$balance[0])*100);
+}
+
+
+function sellTrades($ticker,$username, $password,  $accountnr)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+    $email = getEmailUser($username, $password);
+
+    $query = "SELECT id, price, amount FROM transactions where email='$email' AND accountnr='$accountnr' AND ticker='$ticker'" ;
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    return $result;
 }
 
 
