@@ -1,5 +1,6 @@
 <?php
 require_once 'ConnectionManager.php';
+require_once 'ModelAccount.php';
 class User
 {
     public $name;
@@ -123,6 +124,40 @@ function cashAvaible($username, $password,  $accountnr)
         $sum = $sum + $row[0];
     }
  return $balance[0]-$sum;
+}
+
+function performance($username, $password,  $accountnr)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+    $email = getEmailUser($username, $password);
+
+    $query = "SELECT balance
+                    FROM account
+                    WHERE email = '$email' AND accountnr='$accountnr'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $balance = pg_fetch_row($result);
+
+    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr='$accountnr'";
+
+    $results = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+
+    $profit = 0;
+
+    while ($row = pg_fetch_row($results)) {
+        $currentprice = getCurrentPrice(getTickerFinn($row[2]));
+        $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
+    }
+     return (($profit/$balance[0])*100);
 }
 
 
