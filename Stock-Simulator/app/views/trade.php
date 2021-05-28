@@ -77,7 +77,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <form action="../../app/controllers/orderPlace.php" method="GET" class="orderForm" id="orderForm">
                 <div class="popup" id="popup">
                     <div class="popup-head">
-                        <div> Cash available : </div>
+                        <div> Cash Available : </div>
                         
                             <?php
                             require_once '../../Stock-Simulator/app/models/User.php';
