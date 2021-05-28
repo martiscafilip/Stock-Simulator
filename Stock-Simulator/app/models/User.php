@@ -1,6 +1,6 @@
 <?php
 require_once 'ConnectionManager.php';
-require_once 'ModelAccount.php';
+
 class User
 {
     public $name;
@@ -126,6 +126,17 @@ function cashAvaible($username, $password,  $accountnr)
  return $balance[0]-$sum;
 }
 
+function getCurrentPrice2($ticker)
+{
+    $config = Finnhub\Configuration::getDefaultConfiguration()->setApiKey('token', 'c244gciad3ifufi6gd3g');
+    $client = new Finnhub\Api\DefaultApi(
+        new GuzzleHttp\Client(),
+        $config
+    );
+    $res = $client->stockCandles($ticker, '1', time() - 120, time());
+    return $res['c'][0];
+}
+
 function performance($username, $password,  $accountnr)
 {
     $managerr = new ConnectionManager;
@@ -154,7 +165,7 @@ function performance($username, $password,  $accountnr)
     $profit = 0;
 
     while ($row = pg_fetch_row($results)) {
-        $currentprice = getCurrentPrice(getTickerFinn($row[2]));
+        $currentprice = getCurrentPrice2(getTickerFinn($row[2]));
         $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
     }
      return (($profit/$balance[0])*100);
