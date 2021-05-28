@@ -49,8 +49,6 @@
             $_SESSION["Username"] = $user;
             $_SESSION["Password"] = hash("md5", $password);
             $_SESSION["Account"] = getAccount($user);
-            $_SESSION["Currency"] ="EUR";
-
             header('Location: ../views/trade.php');
         }
     }

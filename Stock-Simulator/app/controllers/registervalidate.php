@@ -20,12 +20,12 @@
  
  
     if (!preg_match("/^(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$/",$fullname)) {
-         echo "For full name, only letters, first name and last name separated by a space ";
+         echo "Only letters, first name and last name separated by a space ";
          $ok=false;
     }
 
     if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
-        echo  "For username, only letters and white space allowed";
+        echo  "Only letters and white space allowed";
         $ok=false;
     }
 
