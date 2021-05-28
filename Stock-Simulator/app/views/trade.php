@@ -3,6 +3,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+if($_COOKIE['stock']==null)
+{
+    $_COOKIE['stock']='TSLA';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -92,9 +98,8 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
                     <div class="buttondiv">
                         <button type="submit" name="orderbutton" <?php
-                                                                   echo "value =".$_COOKIE['stock'];
-                                                                    ?>
-                                                                     id="test" class="placeorderbtn">PLACE ORDER</button>
+                                                                    echo "value=" . $_COOKIE['stock'];
+                                                                    ?> id="test" class="placeorderbtn">PLACE ORDER</button>
                     </div>
             </form>
 
@@ -118,7 +123,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     ?>
                 </div>
                 <div class="buttondivsell">
-                    <button type="submit" name="selldivbutton"  class="selldivbutton">SELL TRANSACTION</button>
+                    <button type="submit" name="selldivbutton" class="selldivbutton">SELL TRANSACTION</button>
                 </div>
             </div>
         </form>
