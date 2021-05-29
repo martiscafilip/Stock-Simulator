@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 require_once '../models/ConnectionManager.php';
-require_once '../models/ModelAccount.php';
+require_once '../models/ModelAccount2.php';
 require_once('../../vendor/autoload.php');
 require_once '../../vendor/finnhub/client/lib/Configuration.php';
 require_once '../../vendor/guzzlehttp/guzzle/src/Client.php';
