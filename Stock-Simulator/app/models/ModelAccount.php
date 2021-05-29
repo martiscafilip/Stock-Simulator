@@ -1,9 +1,5 @@
 <?php
 require_once 'ConnectionManager.php';
-require_once  'Stocks.php';
-require_once '../../Stock-Simulator/vendor/autoload.php';
-require_once '../../Stock-Simulator/vendor/finnhub/client/lib/Configuration.php';
-require_once '../../Stock-Simulator/vendor/guzzlehttp/guzzle/src/Client.php';
 
 
 class Avatar
@@ -17,10 +13,14 @@ function getGlobalRank($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
+    $querr1="SELECT type from account where accountnr=$accountnr";
+    $typeresult=pg_query($conn,$querr1);
+    $type=pg_fetch_row($typeresult)[0];
+
     $query = "SELECT count(*) FROM account t 
              WHERE t.balance >= (SELECT t2.balance FROM  
-                                (SELECT balance,accountnr FROM account ORDER BY balance DESC) t2
-                                                                          WHERE t2.accountnr=$1)";
+                                (SELECT balance,accountnr FROM account where type='$type' ORDER BY balance DESC) t2
+                                                                          WHERE t2.accountnr=$1 ) AND t.type='$type'";
 
 
     pg_prepare($conn, "rank", $query)
@@ -35,12 +35,13 @@ function getGlobalRank($accountnr)
     } else
 
         return null;
+        
 }
 
 function telegram($msg)
 {
     $telegrambot = '1832894465:AAH6RlzP2Gee4RhjSfq7yispdsbXcPgMLZs';
-    $telegramchatid =-1001497334677;
+    $telegramchatid = -1001497334677;
 
     $url = 'https://api.telegram.org/bot' . $telegrambot . '/sendMessage';
     $data = array('chat_id' => $telegramchatid, 'text' => $msg);
@@ -76,19 +77,14 @@ function getProfit($accountnr)
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
 
-    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr=$1";
+    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr=$accountnr";
 
-    pg_prepare($conn, "profit", $query)
-        or die("Cannot prepare statement\n");
-
-    $results = pg_execute($conn, "profit", array($accountnr))
-        or die("Cannot execute statement\n");
-
+    $results=pg_query($conn,$query);
     $profit = 0;
+    while ($row = pg_fetch_array($results)) {
 
-    while ($row = pg_fetch_row($results)) {
-        $currentprice = getCurrentPrice(getTickerFinn($row[2]));
-        $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
+        $currentprice = getCurrentPrice($row['ticker']);
+        $profit += $currentprice * $row['units'] - $row['price'] * $row['units'];
     }
     return $profit;
 }
@@ -100,7 +96,7 @@ function getCurrentPrice($ticker)
         new GuzzleHttp\Client(),
         $config
     );
-    $res = $client->stockCandles($ticker, '1', time() - 120, time());
+    $res = $client->stockCandles($ticker, 'D', time() - 120, time());
     return $res['c'][0];
 }
 
@@ -120,7 +116,7 @@ function UpdateCurrentAvatar($avatar_id, $accountnr)
         or die("Cannot execute statement\n");
 
 
-    return "aaaaa";
+    return "done!";
 }
 
 function getTradesUser($accountnr)
@@ -143,6 +139,25 @@ function getTradesUser($accountnr)
     } else
 
         return null;
+}
+
+function getUserTradesInfo($accountnr)
+{
+
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+    $query = "SELECT * FROM transactions where accountnr=$1";
+
+    pg_prepare($conn, "trades", $query)
+        or die("Cannot prepare statement\n");
+
+    $results = pg_execute($conn, "trades", array($accountnr))
+        or die("Cannot execute statement\n");
+
+    
+
+    return $results ?? null;
 }
 
 function getAllAvatars()
@@ -244,6 +259,23 @@ function putFeedback($message, $accountnr)
 
     $results = pg_execute($conn, "feedback", array($message, $accountnr))
         or die("Cannot execute statement\n");
+
+    return "done!";
+}
+
+function updateUsername($name,$accountnr){
+    
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+
+    $query = "update account SET name = $1 where accountnr=$2";
+    pg_prepare($conn, "prepare", $query)
+        or die("Cannot prepare statement\n");
+
+    $results = pg_execute($conn, "prepare", array($name, $accountnr))
+        or die("Cannot execute statement\n");
+
 
     return "done!";
 }
