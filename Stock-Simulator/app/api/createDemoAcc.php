@@ -43,7 +43,8 @@ function createAccount($email, $username){
                  "email"=> $email, 
                  "balance"=> 100000,
                  "avatar_id"=> 1,
-                 "name"=> $username 
+                 "name"=> $username,
+                 "type"=> 'demo'
                 ],
             PGSQL_DML_EXEC )
     or die ("Cannot prepare statement\n");
