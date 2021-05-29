@@ -19,6 +19,7 @@ $conn = $managerr->get_conn();
 $query = "SELECT a.name as name, country, balance, avatar
             FROM users u JOIN account a ON u.email = a.email 
             JOIN avatars ON avatar_id = avatars.id
+            WHERE a.type = 'real'
             ORDER BY balance DESC"; 
 
 $result = pg_query($conn, $query);
