@@ -8,7 +8,6 @@ if($_COOKIE['stock']==null)
 {
     $_COOKIE['stock']='TSLA';
 }
-
 ?>
 
 <!DOCTYPE html>

@@ -56,7 +56,7 @@
 
           if(!empty($user)) {  
 
-              header('Location: /app/views/trade.php');
+              header('Location: /public/trade/trade');
               
            }
           else{

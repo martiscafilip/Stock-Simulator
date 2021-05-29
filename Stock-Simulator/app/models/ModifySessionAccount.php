@@ -7,5 +7,5 @@ $name = $_GET['name'];
 echo $name;
 modifySessionAccount($name);
 
-header('Location: ../views/trade.php');
+header('Location: ../../public/trade/trade');
 ?>

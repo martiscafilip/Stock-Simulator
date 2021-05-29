@@ -27,8 +27,6 @@ if($name != "" && $email != ""){
 
 function createAccount($email, $username){
 
-
-
     $manager = new ConnectionManager;
     $conn = $manager->get_conn();
 
@@ -51,8 +49,4 @@ function createAccount($email, $username){
     or die ("Cannot prepare statement\n");
 
  }
-
-
-
-
 ?>
