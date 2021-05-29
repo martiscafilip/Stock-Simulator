@@ -6,6 +6,7 @@ require_once '../models/ChangeProfileModel.php';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: 'POST'");
+header("Access-Control-Allow-Headers: *");
 
 header("Content-Type: application/json");
 
@@ -43,7 +44,8 @@ function createAccount($email, $username){
                  "email"=> $email, 
                  "balance"=> 100000,
                  "avatar_id"=> 1,
-                 "name"=> $username 
+                 "name"=> $username,
+                 "type"=> 'demo'
                 ],
             PGSQL_DML_EXEC )
     or die ("Cannot prepare statement\n");
