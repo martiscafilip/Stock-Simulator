@@ -9,7 +9,7 @@ require_once 'ConnectionManager.php';
 
     $query = "SELECT accountnr, balance, avatar, name
                 FROM account a JOIN avatars av ON avatar_id = id
-                WHERE email = '$email'"; 
+                WHERE email = '$email' ORDER BY accountnr"; 
 
    $result = pg_query($conn, $query);
    if(!$result){

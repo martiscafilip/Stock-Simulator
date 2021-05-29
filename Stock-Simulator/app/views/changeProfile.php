@@ -40,13 +40,18 @@
 
         require_once '../app/models/ChangeProfileModel.php';
 
+
+
+        $email;
+
         if(session_status()===PHP_SESSION_NONE)
         {
             session_start();
         }
 
         if(isset($_SESSION["Username"]) && isset($_SESSION["Password"] )) {
-            $profilesArray = getProfiles(getEmail($_SESSION["Username"]));
+            $email = getEmail($_SESSION["Username"]);
+            $profilesArray = getProfiles($email);
         }
 
 
@@ -78,17 +83,35 @@
                         echo "</div>";
                     echo "</div>";
                 }
+                echo "<div class='profile' >";
+                    echo "<div id = 'plusBtn'> ";
+                        echo "<img class = 'plusBtn_photo' src='/public/pictures/plusBtn.png'>";
+                    echo "</div>";
+                    echo "<div class='form'>";
+                        echo "<div id= 'thisEmail' style = 'display: none;'>";
+                            echo getEmail($_SESSION["Username"]);  
+                        echo "</div>";
+                        echo "<label>
+                                Username
+                                <input id='nameDemo' required type='text'>
+                                </label>";
+                        echo "<button id = 'createButton'>Create</button>";
+                    echo "</div>";
+                echo "</div>";
             echo "</div>";
             echo "<div class='fixed'>";
                 echo "Change Profile";
             echo "</div>";
         echo "</div>";
+        // createAccount($email,"Vasile");
     ?>
+
+
 
 
     <script src="/public/side-menu.js"></script>
 
-    <script src="/public/changeProfile.js"></script>
+    <script src="/public/scripts/changeProfile.js"></script>
     
 </body>
 </html>

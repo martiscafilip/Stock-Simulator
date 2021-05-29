@@ -49,7 +49,10 @@ function updateList(list) {
             rank_avatar.classList.add("yellow_color");
         }
         //rank
-        rank_avatar.innerHTML = index + 1;
+        if(index < 9)
+            rank_avatar.innerHTML = "&nbsp;&nbsp;" + (index + 1);
+        else
+            rank_avatar.innerHTML = index + 1;
         //avatar
         let img = document.createElement("img");
         img.setAttribute('class', 'avatar_photo');
