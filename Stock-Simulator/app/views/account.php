@@ -38,6 +38,7 @@
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
+            $_SESSION['Currency']="USD";
         }
 
         $array = getAllAvatars();
@@ -61,10 +62,10 @@
         echo "<p class='stats-title'>Portof. value</p>";
         echo "<p class='stats-value-custom' name='balance'> </p>";
         echo "</div>";
-        if ($_SESSION["Currency"] == "EUR") {
+        if ($_SESSION['Currency'] == "EUR") {
             echo "<button class='change-coin'><span class='coin'>€</span> </button>";
         }
-        if ($_SESSION["Currency"] == "USD") {
+        if ($_SESSION['Currency'] == "USD") {
             echo "<button class='change-coin'><span class='coin'>$</span> </button>";
         }
         echo "</div>";
