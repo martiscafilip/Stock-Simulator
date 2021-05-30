@@ -51,7 +51,11 @@ if ($contentType === "application/json") {
         case 'getInfosAccount':
             $aResult["r_session_currency"] = $_SESSION["Currency"];
             
-            $aResult["r_balance"] = getPortofValue($decoded['arg1']);
+            $aResult["r_balance"] = getPortofValue2($decoded['arg1']);
+
+            $aResult["r_performance"] = getPerformance($decoded['arg1']);
+
+            $aResult["r_cashavbl"] = getCashAvaible($decoded['arg1']);
             
             $aResult["r_profit"]=getProfit($decoded['arg1']);
   

@@ -49,7 +49,7 @@
             $_SESSION["Username"] = $user;
             $_SESSION["Password"] = hash("md5", $password);
             $_SESSION["Account"] = getAccount($user);
-            $_SESSION["Currency"]="EUR";
+            $_SESSION["Currency"]="USD";
             header('Location: ../../public/trade/trade');
         }
     }

@@ -9,8 +9,7 @@ if (isset($_GET["orderbutton"])) {
     session_start();
     $amount = $_GET["cash"];
 
-    if ($amount > cashAvaible($_SESSION["Username"], $_SESSION["Password"], $_SESSION["Account"])) {
-        echo "hello";
+    if ($amount > cashAvaible($_SESSION["Username"], $_SESSION["Password"], $_SESSION["Account"]) || $amount<1) {
         header('Location: /public/trade/trade');
     } else {
         $ticker = $_GET["orderbutton"];

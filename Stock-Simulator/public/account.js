@@ -5,12 +5,12 @@ let updatename = 0;
 
 
 function updateSessionCurrency(arrayInfo) {
-    if (arrayInfo["r_session_currency"] == "USD") {
+    if (arrayInfo["r_session_currency"] == "EUR") {
         fetch("http://localhost/app/controllers/updateCurrency.php", {
                 method: "POST",
 
                 body: JSON.stringify({
-                    functionname: "changeCurrencyToUSD"
+                    functionname: "changeCurrencyToEUR"
                 }),
 
                 headers: new Headers({
@@ -22,7 +22,7 @@ function updateSessionCurrency(arrayInfo) {
 
         .then((json) => {
 
-            console.log("usd >");
+            console.log("eur >");
             var calculbalance = json["result"] * arrayInfo["r_balance"];
             var roundedStringbalance = calculbalance.toFixed(3);
             var roundedbalance = Number(roundedStringbalance);
@@ -33,17 +33,31 @@ function updateSessionCurrency(arrayInfo) {
             document.getElementsByName("rank")[0].innerHTML = arrayInfo["r_rank"];
             document.getElementsByName("trades")[0].innerHTML = arrayInfo["r_trades"];
             document.getElementsByName("profit")[0].innerHTML = roundedprofit;
+            document.getElementsByName("cashavbl")[0].innerHTML = arrayInfo["r_cashavbl"] * json["result"];
 
             counterCoinBtn = 0;
         });
     } else {
-        console.log("eur >");
+        console.log("usd >");
         var calculfinalbalance = (Number(arrayInfo["r_balance"]) + Number(arrayInfo["r_profit"]));
-        document.getElementsByName("balance")[0].innerHTML = arrayInfo["r_balance"];
+
+        var roundedStringbalance = arrayInfo["r_balance"].toFixed(3);
+        var roundedbalance = Number(roundedStringbalance);
+        document.getElementsByName("balance")[0].innerHTML = roundedbalance;
         document.getElementsByName("rank")[0].innerHTML = arrayInfo["r_rank"];
         document.getElementsByName("trades")[0].innerHTML = arrayInfo["r_trades"];
-        document.getElementsByName("profit")[0].innerHTML = arrayInfo["r_profit"];
+
+        var roundedStringprofit = arrayInfo["r_profit"].toFixed(3);
+        var roundedprofit = Number(roundedStringprofit);
+        document.getElementsByName("profit")[0].innerHTML = roundedprofit;
+
+
+        document.getElementsByName("cashavbl")[0].innerHTML = arrayInfo["r_cashavbl"];
     }
+    var calculperformance = arrayInfo["r_performance"];
+    var roundedStringperformance = calculperformance.toFixed(2);
+    var roundedperformance = Number(roundedStringperformance);
+    document.getElementsByName("performance")[0].innerHTML = roundedperformance + " %";
 }
 
 

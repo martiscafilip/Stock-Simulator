@@ -224,6 +224,11 @@ function getPortofValue($accountnr)
         return null;
 }
 
+function getPortofValue2($accountnr)
+{
+    return getPortofValue($accountnr) + getProfit($accountnr);
+}
+
 function getEmailUsername($accountnr)
 {
 
@@ -279,4 +284,72 @@ function updateUsername($name,$accountnr){
 
 
     return "done!";
+}
+
+function getPerformance($accountnr)
+{
+
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+    $query = "SELECT balance
+                    FROM account
+                    WHERE  accountnr='$accountnr'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $balance = pg_fetch_row($result);
+
+    $query = "SELECT units,price,ticker FROM transactions WHERE accountnr='$accountnr'";
+
+    $results = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+
+    $profit = 0;
+
+    while ($row = pg_fetch_row($results)) {
+        // echo "<script>console.log('Debug Objects: " . "test" . "' );</script>";
+
+        $currentprice = getCurrentPrice(getTickerFinn($row[2]));
+        $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
+    }
+    // echo "<script>console.log('Debug Objects: " . (($profit/$balance[0])*100) . "' );</script>";
+     return (($profit/$balance[0])*100);
+}
+
+function getCashAvaible($accountnr)
+{
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+    $query = "SELECT balance
+                    FROM account
+                    WHERE accountnr='$accountnr'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $balance = pg_fetch_row($result);
+    $query = "SELECT amount FROM transactions WHERE accountnr='$accountnr'";
+
+    $results = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+
+    $sum = 0;
+
+    while ($row = pg_fetch_row($results)) {
+        $sum = $sum + $row[0];
+    }
+ return $balance[0]-$sum;
 }

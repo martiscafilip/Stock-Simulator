@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if($_COOKIE['stock']==null)
+if(!isset($_COOKIE['stock']))
 {
     $_COOKIE['stock']='TSLA';
 }

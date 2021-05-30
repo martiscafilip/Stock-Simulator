@@ -1,5 +1,9 @@
 <?php
 require_once 'ConnectionManager.php';
+require_once 'Stocks.php';
+require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\autoload.php';
+require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\finnhub\client\lib\Configuration.php';
+require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\guzzlehttp\guzzle\src\Client.php';
 
 class User
 {
@@ -125,26 +129,26 @@ function cashAvaible($username, $password,  $accountnr)
  return $balance[0]-$sum;
 }
 
-function getCurrentPrice2($ticker)
+function getCurrentPrice5($ticker)
 {
     $config = Finnhub\Configuration::getDefaultConfiguration()->setApiKey('token', 'c244gciad3ifufi6gd3g');
     $client = new Finnhub\Api\DefaultApi(
         new GuzzleHttp\Client(),
         $config
     );
-    $res = $client->stockCandles($ticker, '1', time() - 120, time());
+     $res=$client->stockCandles($ticker, '1', time() - 120, time());
     return $res['c'][0];
 }
 
-function performance($username, $password,  $accountnr)
+function performance($accountnr)
 {
+
     $managerr = new ConnectionManager;
     $conn = $managerr->get_conn();
-    $email = getEmailUser($username, $password);
 
     $query = "SELECT balance
                     FROM account
-                    WHERE email = '$email' AND accountnr='$accountnr'";
+                    WHERE  accountnr='$accountnr'";
 
     $result = pg_query($conn, $query);
     if (!$result) {
@@ -164,10 +168,18 @@ function performance($username, $password,  $accountnr)
     $profit = 0;
 
     while ($row = pg_fetch_row($results)) {
-        $currentprice = getCurrentPrice2(getTickerFinn($row[2]));
+        // echo "<script>console.log('Debug Objects: " . "test" . "' );</script>";
+        $test =getTickerFinn($row[2]);
+        $currentprice = getCurrentPrice5($test);
         $profit += $currentprice * $row['0'] - $row['1'] * $row['0'];
     }
-     return (($profit/$balance[0])*100);
+    // echo "<script>console.log('Debug Objects: " . (($profit/$balance[0])*100) . "' );</script>";
+    if($balance[0]==0)
+    {
+        return "0$";
+    }
+      return strval(intval(($profit/$balance[0])*100)) . "%";
+    
 }
 
 
@@ -186,5 +198,6 @@ function sellTrades($ticker,$username, $password,  $accountnr)
     }
     return $result;
 }
+
 
 

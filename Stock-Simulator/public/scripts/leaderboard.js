@@ -3,7 +3,7 @@ autoRefresh();
 
 async function autoRefresh() {
     while (true) {
-        fetch("https://stock-simulator-hodler.herokuapp.com/app/api/topApi.php", {
+        fetch("http://localhost/app/api/topApi.php", {
                 method: "GET"
             })
             .then(resp => {
@@ -49,7 +49,7 @@ function updateList(list) {
             rank_avatar.classList.add("yellow_color");
         }
         //rank
-        if(index < 9)
+        if (index < 9)
             rank_avatar.innerHTML = "&nbsp;&nbsp;" + (index + 1);
         else
             rank_avatar.innerHTML = index + 1;
