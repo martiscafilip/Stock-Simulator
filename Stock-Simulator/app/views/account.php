@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="/public/account.css">
+    <link rel="shortcut icon" href="#">
 
 </head >
 
@@ -32,13 +33,13 @@
 
         <?php
 
-        require_once '../app/models/ModelAccount2.php';
+        require_once '../app/models/ModelAccount.php';
 
 
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
-            $_SESSION['Currency']="USD";
+            // $_SESSION['Currency']="USD";
         }
 
         $array = getAllAvatars();
@@ -119,7 +120,7 @@
         echo "<h1 class='form-title'>Give us feedback</h1>";
 
         echo "<label for='msg'><b>Message</b></label>";
-        echo "<textarea name='textarea' placeholder='Type message..' id='msg' ></textarea>";
+        echo "<textarea name='textarea' value='' placeholder='Type message..' id='msg' ></textarea>";
 
         echo "<button type='submit' class='btn send' id='message' name='message' onclick='collect()'>Send</button>";
         echo "<button type='button' class='btn cancel' onclick='closeForm()'>Close</button>";
@@ -184,7 +185,7 @@
                 document.getElementById('imagesrc').src = js_array[index][1];
                 document.getElementById("mySection").style.display = "none";
 
-                fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
+                fetch("http://localhost/app/controllers/updateAccount.php", {
 
                         // Adding method type
                         method: "POST",
@@ -213,9 +214,9 @@
             }
 
             function collect() {
-                if ($.trim($("textarea").val()) != "") {
+                if (document.getElementById("msg").value.trim() != "") {
 
-                    fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
+                    fetch("http://localhost/app/controllers/updateAccount.php", {
 
                             // Adding method type
                             method: "POST",
@@ -223,7 +224,7 @@
                             // Adding body or contents to send
                             body: JSON.stringify({
                                 functionname: 'putFeedback',
-                                arg1:  $.trim($("textarea").val()),
+                                arg1: document.getElementById("msg").value.trim(),
                                 arg2: accountnr
                             }),
 
@@ -241,7 +242,8 @@
                         // Displaying results to console
                         .then(json => console.log(json));
                  
-                        $('#msg').val('');
+                        document.getElementById("msg").value = '';
+                        // $('#msg').val('');
 
                 }
             }
@@ -260,7 +262,7 @@
         </script>
         <script src="/public/try.js"></script>
         <script src="/public/account.js"></script>
-
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js%22%3E</script> -->
 
     </body>
 

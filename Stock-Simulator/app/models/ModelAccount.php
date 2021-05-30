@@ -1,9 +1,6 @@
 <?php
 require_once 'ConnectionManager.php';
 require_once 'Stocks.php';
-require_once '../../Stock-Simulator/vendor/autoload.php';
-require_once '../../Stock-Simulator/vendor/finnhub/client/lib/Configuration.php';
-require_once '../../Stock-Simulator/vendor/guzzlehttp/guzzle/src/Client.php';
 
 
 class Avatar
@@ -87,7 +84,7 @@ function getProfit($accountnr)
     $profit = 0;
     while ($row = pg_fetch_array($results)) {
 
-        $currentprice = getCurrentPrice($row['ticker']);
+        $currentprice = getCurrentPrice(getTickerFinn($row['ticker']));
         $profit += $currentprice * $row['units'] - $row['price'] * $row['units'];
     }
     return $profit;
@@ -100,7 +97,7 @@ function getCurrentPrice($ticker)
         new GuzzleHttp\Client(),
         $config
     );
-    $res = $client->stockCandles($ticker, 'D', time() - 120, time());
+     $res=$client->stockCandles($ticker, '1', time() - 120, time());
     return $res['c'][0];
 }
 
