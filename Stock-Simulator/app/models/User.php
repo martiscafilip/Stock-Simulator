@@ -1,9 +1,11 @@
 <?php
 require_once 'ConnectionManager.php';
 require_once 'Stocks.php';
-require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\autoload.php';
-require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\finnhub\client\lib\Configuration.php';
-require_once 'F:\Second C\Stock-Simulator\Stock-Simulator\vendor\guzzlehttp\guzzle\src\Client.php';
+define('__ROOT__', dirname(dirname(dirname(__FILE__))));
+require_once(__ROOT__.'\vendor\autoload.php');
+require_once(__ROOT__.'\vendor\finnhub\client\lib\Configuration.php');
+require_once(__ROOT__.'\vendor\guzzlehttp\guzzle\src\Client.php');
+
 
 class User
 {
