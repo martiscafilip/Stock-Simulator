@@ -6,7 +6,7 @@ let updatename=0;
 
 function updateSessionCurrency(arrayInfo) {
     if (arrayInfo["r_session_currency"] == "USD") {
-    fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateCurrency.php", {
+    fetch("http://localhost:3000/app/controllers/updateCurrency.php", {
       method: "POST",
 
       body: JSON.stringify({
@@ -49,7 +49,7 @@ function updateSessionCurrency(arrayInfo) {
 
 const fetchAccountInfos = async (accountnr) => {
   try{
-    let infos = await fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
+    let infos = await fetch("http://localhost:3000/app/controllers/updateAccount.php", {
       // Adding method type
       method: "POST",
 
@@ -76,7 +76,7 @@ const fetchAccountInfos = async (accountnr) => {
 function refreshAccount(accountnr){
 
   fetchAccountInfos(accountnr).then((arrayInfo) => {
-    console.log("result :" +arrayInfo["r_profit"]+":");
+    console.log("result :" +arrayInfo+":");
     updateSessionCurrency(arrayInfo);
 });
 }
@@ -113,7 +113,7 @@ function updateName(accountnr){
   
   document.getElementById("accountName").innerHTML=name;
 
-  fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
+  fetch("http://localhost:3000/app/controllers/updateAccount.php", {
       method: "POST",
 
       body: JSON.stringify({

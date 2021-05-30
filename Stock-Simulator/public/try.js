@@ -47,7 +47,7 @@ function onclickCoin() {
 }
 
 function replace(name) {
-  fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateCurrency.php", {
+  fetch("http://localhost:3000/app/controllers/updateCurrency.php", {
     // Adding method type
     method: "POST",
 
@@ -84,7 +84,7 @@ function replace(name) {
 function replaceSessionCurrency(currentCurrency) {
 
 
-  fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateCurrency.php", {
+  fetch("http://localhost:3000/app/controllers/updateCurrency.php", {
 
     // Adding method type
     method: "POST",

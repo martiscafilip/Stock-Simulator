@@ -28,7 +28,7 @@
                 new GuzzleHttp\Client(),
                 $config
             );
-             $res=$client->stockCandles('PINS', '1', time() - 120, time());
+             $res=$client->stockCandles('BINANCE:TSLA', '1', time() - 120, time());
             // $res= $client->cryptoSymbols('BINANCE');
             //  print_r($res);
 
