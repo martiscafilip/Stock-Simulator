@@ -3,7 +3,7 @@ autoRefresh();
 
 async function autoRefresh() {
     while (true) {
-        fetch("http://localhost/app/api/topApi.php", {
+        fetch("http://stock-simulator-hodler.herokuapp.com/app/api/topApi.php", {
                 method: "GET"
             })
             .then(resp => {

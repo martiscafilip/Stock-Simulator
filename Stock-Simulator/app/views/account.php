@@ -185,7 +185,7 @@
             document.getElementById('imagesrc').src = js_array[index][1];
             document.getElementById("mySection").style.display = "none";
 
-            fetch("http://localhost/app/controllers/updateAccount.php", {
+            fetch("http://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
 
                     // Adding method type
                     method: "POST",
@@ -216,7 +216,7 @@
         function collect() {
             if (document.getElementById("msg").value.trim() != "") {
 
-                fetch("http://localhost/app/controllers/updateAccount.php", {
+                fetch("http://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
 
                         // Adding method type
                         method: "POST",

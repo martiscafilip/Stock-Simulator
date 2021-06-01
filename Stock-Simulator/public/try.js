@@ -93,7 +93,8 @@ function replace(name) {
 function replaceSessionCurrency(currentCurrency) {
 
 
-    fetch("http://localhost/app/controllers/updateCurrency.php", {
+    // fetch("http://localhost/app/controllers/updateCurrency.php", {
+    fetch("http://stock-simulator-hodler.herokuapp.com/app/controllers/updateCurrency.php", {
 
         // Adding method type
         method: "POST",
