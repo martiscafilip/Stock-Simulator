@@ -101,22 +101,22 @@ function openTrades() {
 
 function openInput(accountnr) {
     verifyAccountUsername(accountnr).then((result) => {
-        if(result["result"]=="demo"){
-        updatename = 1;
-        document.getElementById("newname1").style.display = "block";
-        document.getElementById("newname2").style.display = "block";
-        document.getElementById("newname3").style.display = "block";
-        document.body.addEventListener("click", onClickBodyC);
-        console.log("adaugat");
-        }else alert("Nu puteti schimba username-ul contului primar!");
-        console.log("cont->"+result["result"]);
+        if (result["result"] == "demo") {
+            updatename = 1;
+            document.getElementById("newname1").style.display = "block";
+            document.getElementById("newname2").style.display = "block";
+            document.getElementById("newname3").style.display = "block";
+            document.body.addEventListener("click", onClickBodyC);
+            console.log("adaugat");
+        } else alert("Nu puteti schimba username-ul contului primar!");
+        console.log("cont->" + result["result"]);
     });
-    
+
 }
 
-const verifyAccountUsername = async(accountnr) =>{
+const verifyAccountUsername = async(accountnr) => {
     try {
-        let infos = await fetch("http://localhost:3000/app/controllers/updateAccount.php", {
+        let infos = await fetch("http://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
             // Adding method type
             method: "POST",
 
@@ -139,6 +139,7 @@ const verifyAccountUsername = async(accountnr) =>{
         console.log(err);
     }
 }
+
 function onClickBodyC(e) {
     if (updatename === 0) {
         if (inputname.contains(e.target)) {
