@@ -116,7 +116,7 @@ function openInput(accountnr) {
 
 const verifyAccountUsername = async(accountnr) => {
     try {
-        let infos = await fetch("http://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
+        let infos = await fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
             // Adding method type
             method: "POST",
 
