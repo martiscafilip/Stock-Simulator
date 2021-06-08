@@ -85,7 +85,7 @@
                 }
                 echo "<div class='profile' >";
                     echo "<div id = 'plusBtn'> ";
-                        echo "<img class = 'plusBtn_photo' src='/public/pictures/plusBtn.png'>";
+                        echo "<img class = 'plusBtn_photo' src='/public/pictures/plusBtn.png' alt='create demo acc'>";
                     echo "</div>";
                     echo "<div class='form'>";
                         echo "<div id= 'thisEmail' style = 'display: none;'>";
