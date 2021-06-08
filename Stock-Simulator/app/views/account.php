@@ -127,12 +127,14 @@
     echo "</div>";
     echo "</div>";
 
+    echo "<div  class='mybackground' id='avatarbackground'>";
+    echo "</div>";
 
     echo "<div class='change-avatar' id='mySection'>";
     echo "<img class='user_avatar_icon' id='imageId' src='" . $array[0][1] . "' alt='Utilizator-avatar imagine'>";
-    echo "<a href='#' class='previous round'>&#8249;</a>";
-    echo "<a href='#' class='next round'>&#8250;</a>";
-    echo "<a href='#' class='ok round'>&#10003;</a>";
+    echo "<button type='button' class='previous round'>&#8249;</button>";
+    echo "<button type='button' class='next round'>&#8250;</button>";
+    echo "<button type='button' class='ok round'>&#10003;</button>";
     echo "</div>";
 
     echo "<div  class='updateUsername' id='newname1'>";
@@ -165,7 +167,6 @@
 
             console.log(js_array[index][1]);
             document.getElementById('imageId').src = js_array[index][1];
-            document.getElementById('imagesrc').src = js_array[index][1];
 
         }
 
@@ -176,7 +177,6 @@
             }
 
             document.getElementById('imageId').src = js_array[index][1];
-            document.getElementById('imagesrc').src = js_array[index][1];
 
 
         }
@@ -184,6 +184,8 @@
         function closeAvatar() {
             document.getElementById('imagesrc').src = js_array[index][1];
             document.getElementById("mySection").style.display = "none";
+            document.getElementById("avatarbackground").style.display = "none";
+            document.body.removeEventListener("click", onClickBodyAvatar);
 
             fetch("https://stock-simulator-hodler.herokuapp.com/app/controllers/updateAccount.php", {
 
