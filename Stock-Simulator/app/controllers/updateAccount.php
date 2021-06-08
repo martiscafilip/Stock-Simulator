@@ -69,6 +69,10 @@ if ($contentType === "application/json") {
             $aResult = updateUsername($decoded['arg1'], $decoded['arg2']);
             break;
 
+        case 'getContType':
+            $aResult["result"] = getContType($decoded['arg1']);
+            break;
+
         default:
             $aResult['error'] = 'Not found function !';
             break;

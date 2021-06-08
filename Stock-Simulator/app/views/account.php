@@ -51,7 +51,7 @@
     echo "<div class='avatar-icon'>";
     echo "<input type='image' class='user_avatar' id='imagesrc' src='" . $currentAvatar . "' alt='Avatar cont utilizator'>";
     echo "</div>";
-    echo "<p class='username' id='accountName' onclick='openInput()'>" . $username . "</p>";
+    echo "<p class='username' id='accountName' onclick='openInput(" . $_SESSION["Account"] . ")'>" . $username . "</p>";
     echo "</div>";
 
     echo "<div class='wrapper-info'>";
