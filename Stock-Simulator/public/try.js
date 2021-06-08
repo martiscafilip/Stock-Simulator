@@ -2,6 +2,7 @@ let menuBtn = document.getElementsByClassName("menu-button")[0];
 let iconBt = document.getElementsByClassName("user_avatar")[0];
 let navSlide = document.getElementsByClassName("menu-nav")[0];
 let coinBtn = document.getElementsByClassName("change-coin")[0];
+let changeAvatarPanel = document.getElementsByClassName("user_avatar_icon")[0];
 
 let counterPressButton = 0;
 let counterCoinBtn = 1;
@@ -131,14 +132,31 @@ function onClickBody(e) {
     document.body.removeEventListener("click", onClickBody);
 }
 
+function onClickBodyAvatar(e) {
+    if (
+      changeAvatarPanel.contains(e.target) ||
+      iconBt.contains(e.target) ||
+      previousBtn.contains(e.target) ||
+      okBtn.contains(e.target) ||
+      nextBtn.contains(e.target)
+    ) {
+      return;
+    }
+    document.getElementById("mySection").style.display = "none";
+    document.getElementById("avatarbackground").style.display = "none";
+    document.body.removeEventListener("click", onClickBodyAvatar);
+  }
+
 function onClickAvatar() {
     openAvatar();
-    document.body.addEventListener("click", onClickBody);
+    document.body.addEventListener("click", onClickBodyAvatar);
     console.log("deschis");
 }
 
 function openAvatar() {
     document.getElementById("mySection").style.display = "block";
+    document.getElementById("avatarbackground").style.display = "block";
+
     console.log("adaugat");
 }
 
