@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock-Simulator</title>
+</head>
+<div>
+<h1>Stock-Simulator</h1>
+<div>
+    <section typeof="sa:AuthorsList">
+        <h2>Authors</h2>
+        <ul>
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+            <meta property="schema:givenName" content="Filip">
+            <meta property="schema:familyName" content="Martisca">
+            <span property="schema:name">Martisca Filip</span>
+                </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="martiscafilip8@gmail.com" property="schema:email">martiscafilip8@gmail.com</a>
+                    </li>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="0765790150" property="schema:telephone">0765790150</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+            <meta property="schema:givenName" content="Ionut">
+            <meta property="schema:additionalName" content="Andrei">
+            <meta property="schema:familyName" content="Dinco">
+            <span property="schema:name">Dinco A. Ionut</span>
+                </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="dincoionut49@gmail.com" property="schema:email">dincoionut49@gmail.com</a>
+                    </li>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="0720134131" property="schema:telephone">0720134131</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+                <span typeof="schema:Person">
+            <meta property="schema:givenName" content="Claudiu">
+            <meta property="schema:familyName" content="Paladi">
+            <span property="schema:name">Paladi Claudiu</span>
+                </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="pclaudiu012@gmail.com" property="schema:email">pclaudiu012@gmail.com</a>
+                    </li>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="0787445800" property="schema:telephone">0787445800</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<section>
+    <h3>1.Introduction</h3>
+    <ul>
+        <li>
+            <h4>1.1 Purpose</h4>
+            <p>In this document we will present the "stock-simulator" project v1.0. This project aims to help investment beginners to become familiar with the system without losing equity.</p>
+        </li>
+        <li>
+            <h4>1.2 Document Conventions</h4>
+            <p>This project will use an API to retrieve stock price data and a DB to store information about each user.</p>
+        </li>
+        <li>
+            <h4>1.3 Intended Audience and Reading Suggestions</h4>
+            <p>"Stock-Simulator" is useful for all people who want to trade on the stock market but also for people who are already familiar with the stock market, to strengthen their investment strategies.</p>
+        </li>
+        <li>
+            <h4>1.4 Product Scope</h4>
+            <p> First of all, the purpose of the project is to give users an easy-to-use interface with useful statistics and information. One benefit is to remove the influence of emotions by using virtual money, and the goal is to familiarize as many people
+                with the stock market, becauze money is an important part of our lives that many people neglect.</p>
+        </li>
+        <li>
+            <h4>1.5 References</h4>
+
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html" property="schema:citation">
+                <cite property="schema:name">
+   <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">#web Tehnologii Web </a>
+ </cite>, by
+                <span property="schema:author" typeof="schema:Person"></span>
+                <span property="schema:givenName">Sabin</span>
+                <span property="schema:familyName">Buraga</span>
+            </li>
+
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://iampava.com/slides/web-technologies-2021" property="schema:citation">
+                <cite property="schema:name">
+   <a href="https://iampava.com/slides/web-technologies-2021">Web Technologies </a> </cite>, by
+                <span property="schema:author" typeof="schema:Person"></span>
+                <span property="schema:givenName">Alexandru</span>
+                <span property="schema:familyName">Pavaloi</span>
+            </li>
+    </ul>
+</section>
+
+<section>
+    <h3>2.Structure</h3>
+    <ul>
+        <li>
+            <h4>2.1.Application diagram</h4>
+            <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2021-06-08T14:41:50.700Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36\&quot; etag=\&quot;mQXVv5Lc9H_XDaoeuqiS\&quot; version=\&quot;14.6.13\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;6a731a19-8d31-9384-78a2-239565b7b9f0\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h3>3.Relevant code</h3>
+    <ul>
+
+        <li>
+            <h4>3.1.Leaderboard</h4>
+            <p>Method `updateList` takes as parameter a list from DB in json format. He delets the entire div with the leaderboard and create it again step by step. It is called in `.then` of a fetch</p>
+            <img src="pictures/leaderboard1.png" alt="source code">
+            <p></p>
+            <img src="pictures/leaderboard2.png" alt="source code">
+        </li>
+
+        <li>
+            <h4>3.2.Change Profile</h4>
+            <p>Method `createDemo` creates a json with needed informations for creating an account and make a `POST` request to "https://stock-simulator-hodler.herokuapp.com/app/api/createDemoAcc.php" to create it.</p>
+            <img src="pictures/changeProfile.PNG" alt="source code">
+        </li>
+
+        <li>
+            <h4>3.3.Account</h4>
+            <p>Method `refreshAccount` is called from 20s to 20s and call `fetchAccountInfos` and `updateSessionCurrency` in order to update the infromations about the account.
+                `fetchAccountInfos` takes current informations from DB in json format and takes over to `updateSessionCurrency` in order to modify the asked values.
+            </p>
+            <img src="pictures/Account1.PNG" alt="source code">
+            <p></p>
+            <img src="pictures/Account2.PNG" alt="source code">
+            <p></p>
+            <img src="pictures/Account3.PNG" alt="source code">
+            <p></p>
+            <img src="pictures/Account4.PNG" alt="source code">
+        </li>
+
+
+    </ul>
+
+</section>
+
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+</div>
+
+</html>
