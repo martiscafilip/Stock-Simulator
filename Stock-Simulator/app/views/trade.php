@@ -4,9 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if(!isset($_COOKIE['stock']))
-{
-    $_COOKIE['stock']='TSLA';
+if (!isset($_COOKIE['stock'])) {
+    $_COOKIE['stock'] = 'TSLA';
 }
 ?>
 
@@ -49,7 +48,7 @@ if(!isset($_COOKIE['stock']))
                 <!-- <div class="line">
                 </div> -->
                 <div class="listStocks">
-                    <img id="NASDAQ:TSLA" class="stocks" name="stockname" src="/public/stock-pictures/tesla.png" alt="tesla logo">
+                    <img id="NASDAQ:TSLA" class="stocks"  src="/public/stock-pictures/tesla.png" alt="tesla logo">
                     <img id="BITSTAMP:BTCUSD" class="stocks" src="/public/stock-pictures/btc.png" alt="btc logo">
                     <img id="BITSTAMP:ETHUSD" class="stocks" src="/public/stock-pictures/eth.png" alt="eth logo">
                     <img id="NASDAQ:AAPL" class="stocks" src="/public/stock-pictures/apple.png" alt="apple logo">
@@ -100,9 +99,11 @@ if(!isset($_COOKIE['stock']))
                                                                     echo "value=" . $_COOKIE['stock'];
                                                                     ?> id="test" class="placeorderbtn">PLACE ORDER</button>
                     </div>
+                </div>
             </form>
 
-        </div>
+        
+
         <form action="../../app/controllers/sellTransaction.php" method="GET" class="sellForm" id="sellForm">
             <div class="popupsell" id="popupsell">
                 <div class="listsellstocks">
@@ -127,8 +128,6 @@ if(!isset($_COOKIE['stock']))
             </div>
         </form>
 
-
-
         <div id="overlay"></div>
 
 
@@ -136,8 +135,8 @@ if(!isset($_COOKIE['stock']))
         <div class="tradingview-widget-container">
             <div id="tradingview_5890d"></div>
             <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-TSLA/" rel="noopener" target="_blank"><span class="blue-text">TSLA Chart</span></a> by TradingView</div> -->
-            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-            <script type="text/javascript">
+            <script src="https://s3.tradingview.com/tv.js"></script>
+            <script>
                 var name = "NASDAQ:TSLA";
                 var test = document.getElementsByClassName("stocks");
 
@@ -195,6 +194,7 @@ if(!isset($_COOKIE['stock']))
             </script>
         </div>
         <!-- TradingView Widget END -->
+</div>
     </div>
 
     <div class="sellbuy">
@@ -202,17 +202,10 @@ if(!isset($_COOKIE['stock']))
         <button data-popupsell-target="#popupsell" class="btn sellbutton">SELL</button>
     </div>
 
-    </div>
+
     <script src="/public/try.js"></script>
     <script src="/public/scripts/popup.js"></script>
     <script src="/public/scripts/popupsell.js"></script>
-
-    <?php
-
-
-
-    ?>
-
 
 
 </body>
