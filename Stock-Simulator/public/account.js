@@ -99,16 +99,46 @@ function openTrades() {
     location.assign("/public/userTrades/viewTrades");
 }
 
-function openInput() {
-    updatename = 1;
-    document.getElementById("newname1").style.display = "block";
-    document.getElementById("newname2").style.display = "block";
-    document.getElementById("newname3").style.display = "block";
-    document.body.addEventListener("click", onClickBodyC);
-    console.log("adaugat");
+function openInput(accountnr) {
+    verifyAccountUsername(accountnr).then((result) => {
+        if(result["result"]=="demo"){
+        updatename = 1;
+        document.getElementById("newname1").style.display = "block";
+        document.getElementById("newname2").style.display = "block";
+        document.getElementById("newname3").style.display = "block";
+        document.body.addEventListener("click", onClickBodyC);
+        console.log("adaugat");
+        }else alert("Nu puteti schimba username-ul contului primar!");
+        console.log("cont->"+result["result"]);
+    });
+    
 }
 
+const verifyAccountUsername = async(accountnr) =>{
+    try {
+        let infos = await fetch("http://localhost:3000/app/controllers/updateAccount.php", {
+            // Adding method type
+            method: "POST",
 
+            // Adding body or contents to send
+            body: JSON.stringify({
+                functionname: "getContType",
+                arg1: accountnr
+            }),
+
+            // Adding headers to the request
+            headers: new Headers({
+                "Content-Type": "application/json", // sent request
+                "Accept": "application/json",
+            }),
+        })
+        const resBody = await infos.json();
+        return resBody;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
 function onClickBodyC(e) {
     if (updatename === 0) {
         if (inputname.contains(e.target)) {

@@ -357,3 +357,21 @@ function getCashAvaible($accountnr)
     }
  return $balance[0]-$sum;
 }
+
+function getContType($accountnr){
+    $managerr = new ConnectionManager;
+    $conn = $managerr->get_conn();
+
+    $query = "SELECT type
+                    FROM account
+                    WHERE accountnr='$accountnr'";
+
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        echo "An error occured!\n";
+        return null;
+    }
+    $row = pg_fetch_row($result);
+    return $row[0];
+
+}
