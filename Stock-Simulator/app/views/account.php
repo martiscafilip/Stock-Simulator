@@ -74,7 +74,7 @@
     echo "<div class='info-box'>";
     echo "<img class='user_info_icons' src='/public/profil-pictures/save-money-icon-71.png' alt='Utilizator-bani disponimili imagine'>";
     echo "<div class='box-stats'>";
-    echo "<p class='stats-title' name='balance cash'>Cash Available</p>";
+    echo "<p class='stats-title' >Cash Available</p>";
     echo "<p class='stats-value' id='cashavbl'>Loading...</p>";
     echo "</div>";
     echo "</div>";
@@ -120,7 +120,7 @@
     echo "<h1 class='form-title'>Give us feedback</h1>";
 
     echo "<label for='msg'><b>Message</b></label>";
-    echo "<textarea name='textarea' value='' placeholder='Type message..' id='msg' ></textarea>";
+    echo "<textarea name='textarea' placeholder='Type message..' id='msg' ></textarea>";
 
     echo "<button type='submit' class='btn send' id='message' name='message' onclick='collect()'>Send</button>";
     echo "<button type='button' class='btn cancel' onclick='closeForm()'>Close</button>";
@@ -144,7 +144,7 @@
     ?>
 
 
-    <script type='text/javascript'>
+    <script >
         var js_array = <?php echo json_encode($array); ?>;
         var accountnr = <?php echo json_encode($_SESSION["Account"]); ?>;
 
@@ -254,7 +254,7 @@
         function refreshInfos() {
             refreshAccount(accountnr);
 
-            setInterval(function() {refreshAccount(accountnr);}, 10000);
+            setInterval(function() {refreshAccount(accountnr);}, 20000);
         }
 
         function updateNamePrev() {
