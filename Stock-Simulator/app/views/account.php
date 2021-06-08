@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="/public/stylesheets/account.css">
+    <link rel = "icon" type = "image/png" href = "/public/logo.png">
     <link rel="shortcut icon" href="#">
 
 </head>

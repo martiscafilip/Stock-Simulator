@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leader Board</title>
     <link rel="stylesheet" href="/public/stylesheets/changeProfile.css">
+    <link rel = "icon" type = "image/png" href = "/public/logo.png">
 </head>
 <body>
     

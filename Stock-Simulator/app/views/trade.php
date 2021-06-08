@@ -18,6 +18,7 @@ if (!isset($_COOKIE['stock'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/stylesheets/tradeStyle.css">
     <link rel="stylesheet" href="/public/stylesheets/buttons.css">
+    <link rel = "icon" type = "image/png" href = "/public/logo.png">
     <link rel="shortcut icon" href="#">
 
     <title>Trade</title>

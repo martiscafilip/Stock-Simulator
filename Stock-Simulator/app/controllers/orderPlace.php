@@ -13,8 +13,6 @@ if (isset($_GET["orderbutton"])) {
         header('Location: /public/trade/trade');
     } else {
         $ticker = $_GET["orderbutton"];
-
-
         $priceTicker = getTickerFinn($ticker);
 
         $config = Finnhub\Configuration::getDefaultConfiguration()->setApiKey('token', 'c244gciad3ifufi6gd3g');
@@ -28,8 +26,6 @@ if (isset($_GET["orderbutton"])) {
         $amount = $_GET["cash"];
         $units = $amount / $price;
 
-
-        debug_to_console($_GET["cash"]);
         $email = getEmailUser($_SESSION["Username"], $_SESSION["Password"]);
         $accoutnr = $_SESSION["Account"];
         insertTransaction($email, $accoutnr, $units, $price, $amount, $ticker);
