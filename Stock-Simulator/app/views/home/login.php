@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/public/login-style.css">
+    <link rel="stylesheet" href="/public/stylesheets/login-style.css">
 </head>
 
 <body>
@@ -19,10 +19,20 @@
             HODL FOR YOUR LIFE
         </p>
         <form action="../../app/controllers/loginvalidate.php" method="POST">
+        <?php
+        session_start();
+
+        if ($_SESSION["Incorrect"]=="true")
+        {
+        echo "<p class='incorrect'>Incorrect Username or Password! </p>"; 
+        }
+        $_SESSION["Incorrect"]="false";
+        
+        ?>
             <div class="form-log-info">
                 <label>
                     <!-- <p> -->
-                    Username or Email Address
+                    Username 
                     <!-- </p> -->
                     <input name="username" required type="text">
                 </label>
@@ -65,7 +75,7 @@
       }
       else 
       {
-          echo "NO SESSION-test";
+        //   echo "NO SESSION-test";
       }
   ?>
 </body>

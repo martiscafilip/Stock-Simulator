@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/public/registerStyle.css">
+	<link rel="stylesheet" href="/public/stylesheets/registerStyle.css">
 	<title>Register</title>
 </head>
 
@@ -15,10 +15,20 @@
 			<img src="/public/logo.png" alt="Site Logo l" width="150">
 		</div>
 		<div class="registration_form">
+
 			<form action="../../app/controllers/registervalidate.php" method="POST">
 				<div class="title">
 					Registration Form
 				</div>
+				<?php
+						session_start();
+
+						if ($_SESSION["registererror"] != "false") {
+							echo "<p class='registererror'>" . $_SESSION["registererror"] . "</p>";
+						}
+						$_SESSION["registererror"] = "false";
+
+						?>
 				<div class="form_wrap">
 					<div class="input_wrap">
 						<label for="fname">Full Name</label>

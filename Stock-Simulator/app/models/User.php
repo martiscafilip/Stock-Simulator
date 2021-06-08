@@ -1,10 +1,10 @@
 <?php
 require_once 'ConnectionManager.php';
 require_once 'Stocks.php';
-define('__ROOT__', dirname(dirname(dirname(__FILE__))));
-require_once(__ROOT__.'/vendor/autoload.php');
-require_once(__ROOT__.'/vendor/finnhub/client/lib/Configuration.php');
-require_once(__ROOT__.'/vendor/guzzlehttp/guzzle/src/Client.php');
+define('__ROOTT__', dirname(dirname(dirname(__FILE__))));
+require_once(__ROOTT__.'/vendor/autoload.php');
+require_once(__ROOTT__.'/vendor/finnhub/client/lib/Configuration.php');
+require_once(__ROOTT__.'/vendor/guzzlehttp/guzzle/src/Client.php');
 
 
 class User
@@ -178,7 +178,7 @@ function performance($accountnr)
     // echo "<script>console.log('Debug Objects: " . (($profit/$balance[0])*100) . "' );</script>";
     if($balance[0]==0)
     {
-        return "0$";
+        return "0%";
     }
       return strval(intval(($profit/$balance[0])*100)) . "%";
     

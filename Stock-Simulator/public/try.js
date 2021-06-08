@@ -70,22 +70,22 @@ function replace(name) {
         console.log(json);
         var jsonResponse = json
 
-        var calcul = document.getElementsByName("balance")[0].textContent * jsonResponse["result"];
+        var calcul = document.getElementById("balance").textContent * jsonResponse["result"];
         var roundedString = calcul.toFixed(3);
         var rounded = Number(roundedString);
 
-        var calculprofit = document.getElementsByName("profit")[0].textContent * jsonResponse["result"];
+        var calculprofit = document.getElementById("profit").textContent * jsonResponse["result"];
         var roundedString = calculprofit.toFixed(3);
         var roundedprofit = Number(roundedString);
 
-        var calculcashavbl = document.getElementsByName("cashavbl")[0].innerHTML * jsonResponse["result"];
+        var calculcashavbl = document.getElementById("cashavbl").innerHTML * jsonResponse["result"];
         var roundedString = calculcashavbl.toFixed(3);
         var roundedcashavbl = Number(roundedString);
 
 
-        document.getElementsByName("profit")[0].innerHTML = roundedprofit;
-        document.getElementsByName("balance")[0].innerHTML = rounded;
-        document.getElementsByName("cashavbl")[0].innerHTML = roundedcashavbl;
+        document.getElementById("profit").innerHTML = roundedprofit;
+        document.getElementById("balance").innerHTML = rounded;
+        document.getElementById("cashavbl").innerHTML = roundedcashavbl;
 
     });
 }

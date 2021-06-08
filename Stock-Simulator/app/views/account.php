@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/public/account.css">
+    <link rel="stylesheet" href="/public/stylesheets/account.css">
     <link rel="shortcut icon" href="#">
 
 </head>
@@ -61,7 +61,7 @@
     echo "<div class='box-stats-special'>";
     echo "<div class='stats-value-special'>";
     echo "<p class='stats-title'>Portof. value</p>";
-    echo "<p class='stats-value-custom' name='balance'>Loading...</p>";
+    echo "<p class='stats-value-custom' id='balance'>Loading...</p>";
     echo "</div>";
     if ($_SESSION['Currency'] == "EUR") {
         echo "<button class='change-coin'><span class='coin'>€</span> </button>";
@@ -75,14 +75,14 @@
     echo "<img class='user_info_icons' src='/public/profil-pictures/save-money-icon-71.png' alt='Utilizator-bani disponimili imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title' name='balance cash'>Cash Available</p>";
-    echo "<p class='stats-value' name='cashavbl'>Loading...</p>";
+    echo "<p class='stats-value' id='cashavbl'>Loading...</p>";
     echo "</div>";
     echo "</div>";
     echo "<div class='info-box'>";
     echo "<img class='user_info_icons' src='/public/profil-pictures/ranking-icon-65.png' alt='Utilizator-loc in clasament imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Global Rank</p>";
-    echo "<p class='stats-value' name='rank'>Loading... </p>";
+    echo "<p class='stats-value' id='rank'>Loading... </p>";
     echo "</div>";
     echo "</div>";
 
@@ -92,21 +92,21 @@
     echo "<img class='user_info_icons' src='/public/profil-pictures/profit-icon-66.png' alt='Utilizator-performanta imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Performance</p>";
-    echo "<p class='stats-value' name='performance'>Loading...</p>";
+    echo "<p class='stats-value' id='performance'>Loading...</p>";
     echo "</div>";
     echo "</div>";
     echo "<div class='info-box' id='trades' onclick='openTrades()'>";
     echo "<img class='user_info_icons' src='/public/profil-pictures/money-transfer-icon-75.png' alt='Utilizator-comert imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Trades</p>";
-    echo "<p class='stats-value' name='trades'>Loading... </p>";
+    echo "<p class='stats-value' id='tradess'>Loading... </p>";
     echo "</div>";
     echo "</div>";
     echo "<div class='info-box'>";
     echo "<img class='user_info_icons' src='/public/profil-pictures/profit-and-loss-icon-68.png' alt='Utilizator-pierderi imagine'>";
     echo "<div class='box-stats'>";
     echo "<p class='stats-title'>Profitable</p>";
-    echo "<p class='stats-value' name='profit'>Loading... </p>";
+    echo "<p class='stats-value' id='profit'>Loading... </p>";
     echo "</div>";
     echo "</div>";
     echo "</div>";
@@ -252,7 +252,7 @@
         function refreshInfos() {
             refreshAccount(accountnr);
 
-            setInterval(function() {refreshAccount(accountnr);}, 60000);
+            setInterval(function() {refreshAccount(accountnr);}, 10000);
         }
 
         function updateNamePrev() {

@@ -13,25 +13,30 @@
     
      $ok = true;
 
+     session_start();
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format";
+        $_SESSION["registererror"]="Invalid email format!";
+        header('Location: /public/register/register');
         $ok=false;
     }
  
- 
     if (!preg_match("/^(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$/",$fullname)) {
-         echo "Only letters, first name and last name separated by a space ";
+        $_SESSION["registererror"]="Only letters, first name and last name separated by a space! ";
+         header('Location: /public/register/register');
          $ok=false;
     }
 
     if (!preg_match("/^[a-zA-Z-' ]*$/",$username)) {
-        echo  "Only letters and white space allowed";
+        $_SESSION["registererror"]="Only letters and white space allowed!";
+        header('Location: /public/register/register');
         $ok=false;
     }
+
 
     if (!empty($_POST["username"]) || !empty($_POST["password"]) || !empty($_POST["email"]) || !empty($_POST["fullname"]) || !empty($_POST["country"])) {
 
         if($ok){
+         $_SESSION["registererror"]="false";
         putUser($username,hash("md5", $password) ,$email ,$fullname,$country );  
         header('Location: /public/home/login');
         }

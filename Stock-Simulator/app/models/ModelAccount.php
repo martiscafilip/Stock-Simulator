@@ -1,6 +1,10 @@
 <?php
 require_once 'ConnectionManager.php';
 require_once 'Stocks.php';
+define('__ROOT__', dirname(dirname(dirname(__FILE__))));
+require_once(__ROOT__.'/vendor/autoload.php');
+require_once(__ROOT__.'/vendor/finnhub/client/lib/Configuration.php');
+require_once(__ROOT__.'/vendor/guzzlehttp/guzzle/src/Client.php');
 
 
 class Avatar

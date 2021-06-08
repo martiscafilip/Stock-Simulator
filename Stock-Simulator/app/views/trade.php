@@ -17,8 +17,8 @@ if(!isset($_COOKIE['stock']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/tradeStyle.css">
-    <link rel="stylesheet" href="/public/buttons.css">
+    <link rel="stylesheet" href="/public/stylesheets/tradeStyle.css">
+    <link rel="stylesheet" href="/public/stylesheets/buttons.css">
     <link rel="shortcut icon" href="#">
 
     <title>Trade</title>
@@ -43,11 +43,11 @@ if(!isset($_COOKIE['stock']))
 
 
             <div class="stocksdiv">
-                <div class="searchStocks">
+                <!-- <div class="searchStocks">
                     <img class="searchbutton" src="/public/button.png">
-                </div>
-                <div class="line">
-                </div>
+                </div> -->
+                <!-- <div class="line">
+                </div> -->
                 <div class="listStocks">
                     <img id="NASDAQ:TSLA" class="stocks" name="stockname" src="/public/stock-pictures/tesla.png" alt="tesla logo">
                     <img id="BITSTAMP:BTCUSD" class="stocks" src="/public/stock-pictures/btc.png" alt="btc logo">
