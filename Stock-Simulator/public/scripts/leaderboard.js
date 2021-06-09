@@ -8,14 +8,12 @@ async function autoRefresh() {
             })
             .then(resp => {
 
-                console.log(resp);
                 return resp.json();
             })
             .then(jsonResp => {
-                console.log("Json resp ", jsonResp);
                 updateList(jsonResp);
             })
-        await sleep(5000);
+        await sleep(10000);
     }
 }
 
@@ -26,7 +24,7 @@ function sleep(ms) {
 function updateList(list) {
     let myDiv1 = document.getElementsByClassName("ranking_pool")[0];
     if (myDiv1 != null) {
-        console.log(myDiv1);
+        // console.log(myDiv1);
         document.getElementById("info").removeChild(myDiv1);
     }
 
@@ -74,7 +72,8 @@ function updateList(list) {
         country.innerHTML = list[index].country;
 
         let balance = document.createElement("p");
-        if (list[index].balance >= 0)
+      
+        if (parseInt(list[index].balance) >= 0)
             balance.setAttribute('class', 'green_color');
         else
             balance.setAttribute('class', 'red_color');
@@ -96,7 +95,7 @@ function updateList(list) {
     }
 
     document.getElementById("info").appendChild(ranking_pool);
-    console.log(ranking_pool);
+    // console.log(ranking_pool);
 
 
 
