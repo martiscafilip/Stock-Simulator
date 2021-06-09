@@ -1,3 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION["Username"])) header('Location: ../../public/home/login');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -22,6 +22,7 @@
         <form action="../../app/controllers/loginvalidate.php" method="POST">
         <?php
         session_start();
+        if(!isset($_SESSION["Incorrect"])) $_SESSION["Incorrect"]="false";
 
         if ($_SESSION["Incorrect"]=="true")
         {

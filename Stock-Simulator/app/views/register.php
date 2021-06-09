@@ -23,6 +23,7 @@
 				</div>
 				<?php
 						session_start();
+						if(!isset($_SESSION["registererror"])) $_SESSION["registererror"]="false";
 
 						if ($_SESSION["registererror"] != "false") {
 							echo "<p class='registererror'>" . $_SESSION["registererror"] . "</p>";
